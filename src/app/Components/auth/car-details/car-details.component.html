@@ -1,1 +1,36 @@
-<p>car-details works!</p>
+<div  class="wrapper registerAmination" style="margin: 50px auto;" >
+   
+    <div class="text-center mt-4 name">
+        CT- Car Pool
+    </div>
+    <br>
+    <form class="p-3 mt-3">
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+        <mat-radio-group #vehicle aria-label="Select an option">
+            <mat-radio-button value="1"> CAR </mat-radio-button>
+            <mat-radio-button value="2"> Bike </mat-radio-button>
+          </mat-radio-group>
+        </div>
+     
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" placeholder="Vehicle Number">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <!-- <input type="color" placeholder="Vehicle Colour" (select)="onColrSelect($event)"> -->
+            <input type="text" placeholder="Vehicle Colour" (select)="onColrSelect($event)">
+        </div>
+       
+        <!-- <label for="cars"></label> -->
+            <select name="cars" id="cars" class="form-field d-flex align-items-center selectoption">
+                <option value="volvo" [disabled]="true">Choose a Car Type</option>
+                <option value="volvo">Hatchback (4)</option>
+                <option value="saab">Sedan (5)</option>
+                <option value="opel" >SUV (7)</option>
+            </select>
+       
+        <button class="btn mt-3">Submit</button>
+    </form>
+</div>

@@ -8,9 +8,15 @@ import { Component } from '@angular/core';
 export class SigninComponent {
    constructor() { }
    isSignIn = true;
+   isForgotPassword = false;
    
    onSignUpclick(){
     this.isSignIn = false;
+    this.isForgotPassword = false;
+   }
+   onForgotPasswordclick(){
+    this.isSignIn = false;
+    this.isForgotPassword = true;
    }
 
 }
