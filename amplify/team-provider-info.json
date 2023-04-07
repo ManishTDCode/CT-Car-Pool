@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ctcarpool-dev-121634-authRole",
+      "UnauthRoleArn": "arn:aws:iam::340336672103:role/amplify-ctcarpool-dev-121634-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::340336672103:role/amplify-ctcarpool-dev-121634-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-ctcarpool-dev-121634-deployment",
+      "UnauthRoleName": "amplify-ctcarpool-dev-121634-unauthRole",
+      "StackName": "amplify-ctcarpool-dev-121634",
+      "StackId": "arn:aws:cloudformation:ap-south-1:340336672103:stack/amplify-ctcarpool-dev-121634/f3381cc0-d50f-11ed-af55-0a22c52a8c78",
+      "AmplifyAppId": "d3l4mzpp55k98u"
+    },
+    "categories": {
+      "auth": {
+        "ctcarpool8f46335e": {}
+      },
+      "hosting": {
+        "S3AndCloudFront": {}
+      }
+    }
+  }
+}
