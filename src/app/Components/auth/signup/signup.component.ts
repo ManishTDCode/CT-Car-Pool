@@ -12,6 +12,7 @@ import { AlertifyService } from '../../../Services/alertify.service';
 export class SignupComponent implements OnInit {
   SignUp!: FormGroup;
   submitted = false;
+  isVehicle = false;
    constructor(private fb: FormBuilder, private router: Router, private alertService: AlertifyService) { }
 
    ngOnInit() {
@@ -23,6 +24,14 @@ export class SignupComponent implements OnInit {
       otp: ['']
     });
   }
+
+   onTickCheckBox(e:any){
+    console.log(e);
+    this.isVehicle = e.checked;
+   }
+   onBackClick(){
+    this.isVehicle = false;
+   }
 
   getOTP() {
     const user = {
@@ -52,5 +61,6 @@ Submit() {
        .catch(err => {
         this.alertService.error(err.message);
       });
-}
-}
+    }
+  }
+

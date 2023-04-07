@@ -1,4 +1,4 @@
-<div *ngIf="isSignIn" class="wrapper loginAmination">
+<div *ngIf="isSignIn && !isForgotPassword" class="wrapper loginAmination">
     <div class="logo">
         <img src="../../assets/car.gif" alt="">
     </div>
@@ -20,10 +20,11 @@
     </form>
     <br>
     <div class="text-center">
-        <a href="#"><u> Forget password?</u></a> or <a (click)="onSignUpclick()" style="cursor: pointer;"><u>Sign up</u></a>
+        <a  (click)="onForgotPasswordclick()"><u> Forget password?</u></a> or <a (click)="onSignUpclick()" style="cursor: pointer;"><u>Sign up</u></a>
     </div>
 </div>
 
 
 
-<app-signup *ngIf="!isSignIn"></app-signup>
+<app-signup *ngIf="!isSignIn && !isForgotPassword"></app-signup>
+<app-forgot-password *ngIf="!isSignIn && isForgotPassword"></app-forgot-password>

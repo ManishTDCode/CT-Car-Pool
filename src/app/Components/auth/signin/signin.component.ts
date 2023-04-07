@@ -46,9 +46,15 @@ export class SigninComponent implements OnInit {
       });
     }
   }
+   isForgotPassword = false;
    
    onSignUpclick(){
     this.isSignIn = false;
+    this.isForgotPassword = false;
+   }
+   onForgotPasswordclick(){
+    this.isSignIn = false;
+    this.isForgotPassword = true;
    }
 
 }

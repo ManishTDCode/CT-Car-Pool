@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./car-details.component.css']
 })
 export class CarDetailsComponent {
-
+  selectedCarType:any;
+  carTypeList = [];
+  carType:any; 
+  onColrSelect(e:any){
+    console.log(e);
+    
+  }
 }
