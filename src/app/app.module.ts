@@ -1,21 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignupComponent } from './signup/signup.component';
-import { MaterialExampleModule } from 'src/material.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { MaterialModule } from './material/material.module';
 @NgModule({
   declarations: [
-    AppComponent,
-    SignupComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    MaterialExampleModule,
-    FormsModule,
-    ReactiveFormsModule
+    AppRoutingModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

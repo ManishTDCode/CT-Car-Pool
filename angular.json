@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "CTcarpool": {
+    "CTCarPool": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ctcarpool",
+            "outputPath": "dist/ctcar-pool",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "CTcarpool:build:production"
+              "browserTarget": "CTCarPool:build:production"
             },
             "development": {
-              "browserTarget": "CTcarpool:build:development"
+              "browserTarget": "CTCarPool:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "CTcarpool:build"
+            "browserTarget": "CTCarPool:build"
           }
         },
         "test": {
@@ -96,6 +96,6 @@
     }
   },
   "cli": {
-    "analytics": "bd9d3782-2aec-4c54-b6fb-3a664a5e62d0"
+    "analytics": "a824a9d3-2579-41b4-ab8b-c0be7d8fa7ff"
   }
 }
