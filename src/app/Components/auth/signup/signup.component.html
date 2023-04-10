@@ -1,5 +1,5 @@
 <!-- sign Up starts-->
-<div *ngIf="!isVehicle" class="wrapper registerAmination" style="margin: 50px auto;" >
+<div *ngIf="!sharedDataService.isVehicle" class="wrapper registerAmination" style="margin: 25px auto;" >
    
     <div class="text-center mt-4 name">
         CT- Car Pool
@@ -30,17 +30,17 @@
             <span class="fas fa-key"></span>
             <input type="text" placeholder="Enter Otp" formControlName="otp">
         </div>
-        <mat-checkbox #checkbox class="example-margin"  (change)="onTickCheckBox($event)" [checked]="false">Do you have vehicle?</mat-checkbox>
-        <button class="btn mt-3" *ngIf="checkbox.checked" (click)="onTickCheckBox($event)">Next</button>
-        <button class="btn mt-3" *ngIf="!checkbox.checked" (click)="Submit()">Submit</button>
+        <mat-checkbox #checkbox class="example-margin"   [checked]="false" (change)="onTickCheckBox($event)">Do you have vehicle?</mat-checkbox>
+        
+        <button class="btn mt-3" (click)="Submit()">{{UserAction}}</button>
     </form>
     <br>
     <div class="text-center">
-        <a (click)="onBackClick()"><u> Back</u></a> 
+        <a (click)="sharedDataService.isSignIn=true"><u> Back</u></a> 
     </div>
 </div>
 <!-- sign Up ends-->
 
 <!-- vehicle registration starts-->
-<app-car-details *ngIf="isVehicle"></app-car-details>
+<app-car-details *ngIf="sharedDataService.isVehicle"></app-car-details>
 <!-- sign Up ends-->

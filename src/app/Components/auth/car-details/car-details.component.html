@@ -5,13 +5,14 @@
     </div>
     <br>
     <form class="p-3 mt-3">
-        <div class="form-field d-flex align-items-center">
+        <!-- <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
+       
+        </div> -->
         <mat-radio-group #vehicle aria-label="Select an option">
-            <mat-radio-button value="1"> CAR </mat-radio-button>
+            <mat-radio-button value="1"> Car </mat-radio-button>
             <mat-radio-button value="2"> Bike </mat-radio-button>
           </mat-radio-group>
-        </div>
      
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
@@ -33,4 +34,8 @@
        
         <button class="btn mt-3">Submit</button>
     </form>
+    <br>
+    <div class="text-center">
+        <a (click)="sharedDataService.isVehicle=false"><u> Back </u></a> 
+    </div>
 </div>

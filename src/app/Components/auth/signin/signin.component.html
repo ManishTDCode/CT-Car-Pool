@@ -1,4 +1,5 @@
-<div *ngIf="isSignIn && !isForgotPassword" class="wrapper loginAmination">
+<!-- SignIn  -->
+<div *ngIf="sharedDataService.isSignIn && !sharedDataService.isForgotPassword" class="wrapper loginAmination">
     <div class="logo">
         <img src="../../assets/car.gif" alt="">
     </div>
@@ -23,8 +24,8 @@
         <a  (click)="onForgotPasswordclick()"><u> Forget password?</u></a> or <a (click)="onSignUpclick()" style="cursor: pointer;"><u>Sign up</u></a>
     </div>
 </div>
+<!-- SignUp  -->
+<app-signup *ngIf="!sharedDataService.isSignIn && !sharedDataService.isForgotPassword"></app-signup>
 
-
-
-<app-signup *ngIf="!isSignIn && !isForgotPassword"></app-signup>
-<app-forgot-password *ngIf="!isSignIn && isForgotPassword"></app-forgot-password>
+<!-- Forgot password -->
+<app-forgot-password *ngIf="!sharedDataService.isSignIn && sharedDataService.isForgotPassword"></app-forgot-password>
