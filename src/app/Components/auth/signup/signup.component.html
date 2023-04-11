@@ -30,7 +30,7 @@
             <span class="fas fa-key"></span>
             <input type="text" placeholder="Enter Otp" formControlName="otp">
         </div>
-        <mat-checkbox #checkbox class="example-margin"   [checked]="false" (change)="onTickCheckBox($event)">Do you have vehicle?</mat-checkbox>
+        <mat-checkbox #checkbox class="example-margin" [checked]="false" (change)="onTickCheckBox($event)">Do you have vehicle?</mat-checkbox>
         
         <button class="btn mt-3" (click)="Submit()">{{UserAction}}</button>
     </form>

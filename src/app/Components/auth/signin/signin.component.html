@@ -11,17 +11,23 @@
     <form class="p-3 mt-3" [formGroup]="Login">
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="text" formControlName="username" placeholder="Username">
+            <input type="text" formControlName="username" placeholder="Username" [ngClass]="{ 'is-invalid' : submitted && f.username.errors }">
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div style="color: red;" *ngIf="f.username.errors.required">Username is required</div>
+            </div>
         </div>
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
-            <input type="password" formControlName="password" placeholder="Password">
+            <input type="password" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid' : submitted && f.password.errors }">
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div style="color: red;" *ngIf="f.password.errors.required">Password is required</div>
+                </div>
         </div>
         <button class="btn mt-3" (click)="login()">Login</button>
     </form>
     <br>
     <div class="text-center">
-        <a  (click)="onForgotPasswordclick()"><u> Forget password?</u></a> or <a (click)="onSignUpclick()" style="cursor: pointer;"><u>Sign up</u></a>
+        <a  (click)="onForgotPasswordclick()"><u> Forgot password?</u></a>&nbsp; or &nbsp;<a (click)="onSignUpclick()" style="cursor: pointer;"><u>Sign up</u></a>
     </div>
 </div>
 <!-- SignUp  -->

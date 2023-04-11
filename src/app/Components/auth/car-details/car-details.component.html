@@ -4,35 +4,48 @@
         CT- Car Pool
     </div>
     <br>
-    <form class="p-3 mt-3">
+    <form class="p-3 mt-3" [formGroup]="CarDetails">
         <!-- <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
        
         </div> -->
-        <mat-radio-group #vehicle aria-label="Select an option">
-            <mat-radio-button value="1"> Car </mat-radio-button>
-            <mat-radio-button value="2"> Bike </mat-radio-button>
+        <mat-radio-group #vehicle aria-label="Select an option" formControlName="ridetype" [ngClass]="{ 'is-invalid' : submitted && f.ridetype.errors }">
+            
+            <mat-radio-button value="Car"> Car </mat-radio-button>
+            <mat-radio-button value="Bike"> Bike </mat-radio-button>
           </mat-radio-group>
+          <div *ngIf="submitted && f.ridetype.errors" class="invalid-feedback">
+            <div style="color: red;" *ngIf="f.ridetype.errors.required">ride type is required</div>
+            </div>
      
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
-            <input type="text" placeholder="Vehicle Number">
+            <input type="text" placeholder="Vehicle Number" formControlName="vehiclenumber" [ngClass]="{ 'is-invalid' : submitted && f.vehiclenumber.errors }">
+            <div *ngIf="submitted && f.vehiclenumber.errors" class="invalid-feedback">
+                <div style="color: red;" *ngIf="f.vehiclenumber.errors.required">vehicle number is required</div>
+                </div>
         </div>
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
             <!-- <input type="color" placeholder="Vehicle Colour" (select)="onColrSelect($event)"> -->
-            <input type="text" placeholder="Vehicle Colour" (select)="onColrSelect($event)">
+            <input type="text" placeholder="Vehicle Colour" (select)="onColrSelect($event)" formControlName="vehiclecolor" [ngClass]="{ 'is-invalid' : submitted && f.vehiclecolor.errors }">
+            <div *ngIf="submitted && f.vehiclecolor.errors" class="invalid-feedback">
+                <div style="color: red;" *ngIf="f.vehiclecolor.errors.required">vehicle color is required</div>
+                </div>
         </div>
        
         <!-- <label for="cars"></label> -->
-            <select name="cars" id="cars" class="form-field d-flex align-items-center selectoption">
+            <select name="cars" id="cars" class="form-field d-flex align-items-center selectoption" formControlName="cartype" [ngClass]="{ 'is-invalid' : submitted && f.cartype.errors }">
                 <option value="volvo" [disabled]="true">Choose a Car Type</option>
-                <option value="volvo">Hatchback (4)</option>
-                <option value="saab">Sedan (5)</option>
-                <option value="opel" >SUV (7)</option>
+                <option value="Hatchback">Hatchback (4)</option>
+                <option value="Sedan">Sedan (5)</option>
+                <option value="SUV" >SUV (7)</option>
             </select>
+            <div *ngIf="submitted && f.cartype.errors" class="invalid-feedback">
+                <div style="color: red;" *ngIf="f.cartype.errors.required">car type is required</div>
+                </div>
        
-        <button class="btn mt-3">Submit</button>
+        <button class="btn mt-3" (click)="saveData()">Submit</button>
     </form>
     <br>
     <div class="text-center">
