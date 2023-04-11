@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewrideComponent } from '../viewride/viewride.component';
+import { CreaterideComponent } from '../createride/createride.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -83,12 +84,23 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   }
 
   viewRideDetails(data: any, enterAnimationDuration: string, exitAnimationDuration: string){
-    // const dialogRef = this.dialog.open(ViewrideComponent, {
-    //   width: '80%',
-    //   // maxWidth: '100%',
-    //   height: "auto",
-    //   enterAnimationDuration,
-    //   exitAnimationDuration,
-    // });
+    const dialogRef = this.dialog.open(ViewrideComponent, {
+      width: 'auto',
+      maxWidth: '100%',
+      height: "auto",
+      
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+  createRide(enterAnimationDuration: string, exitAnimationDuration: string){
+    const dialogRef = this.dialog.open(CreaterideComponent, {
+      width: '452px',
+      maxWidth: '100%',
+      height: "auto",
+      
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 }

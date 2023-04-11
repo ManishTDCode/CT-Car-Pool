@@ -1,25 +1,51 @@
-<div  class="wrapper registerAmination" style="margin: 50px auto;" >
+<div  class="viewContainer">
    
     <div class=" name">
         CT- Ride Details
     </div>
     <br>
-    <div class="name details">
-       <label> Ride Type :</label>
-       <label> Car </label>
-    </div>
-    <div class="name details">
-       <label> Ride Type :</label>
-       <label> Car </label>
-    </div>
-    <div class="name details">
-       <label> Ride Type :</label>
-       <label> Car </label>
-    </div>
-    <div class="name details">
-       <label> Ride Type :</label>
-       <label> Car </label>
-    </div>
-    <br>
+    <table class="table registerAmination">
+        <tr>
+            <td>Ride Type</td>
+            <td>{{reideDetails.ridetype}}</td>
+        </tr>
+        <tr>
+            <td>Vehicle Number</td>
+            <td>{{reideDetails.vehiclenumber}}</td>
+        </tr>
+        <tr>
+            <td>Vehicle Colour</td>
+            <td>{{reideDetails.vehiclecolor}}</td>
+        </tr>
+        <tr>
+            <td>Vehicle Type :</td>
+            <td>{{reideDetails.vehicletype}}</td>
+        </tr>
+        <tr>
+            <td>Ride From :</td>
+            <td>{{reideDetails.from}}</td>
+        </tr>
+        <tr>
+            <td>Ride To :</td>
+            <td>{{reideDetails.to}}</td>
+        </tr>
+        <tr>
+            <td>Fare :</td>
+            <td>{{reideDetails.fare | currency}}</td>
+        </tr>
+        <tr>
+            <td>Number of Seats Available :</td>
+            <td>{{reideDetails.seats}}</td>
+        </tr>
+    </table>
     
 </div>
+<!-- reideDetails = {
+    ridetype:"Car",
+    vehiclenumber:"MH4-4444",
+    Vehiclecolor:"Black",
+    Vehicletype:"SUV",
+    from:"Airoli",
+    to:"Thane",
+    seats:"3",
+  } -->

@@ -9,6 +9,7 @@ import { CreaterideComponent } from './Components/createride/createride.componen
 import { ViewrideComponent } from './Components/viewride/viewride.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxLoadingModule } from "ngx-loading";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,8 @@ import { NgxLoadingModule } from "ngx-loading";
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgxLoadingModule.forRoot({})
   ],
   providers: [],

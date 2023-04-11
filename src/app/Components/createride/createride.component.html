@@ -1,1 +1,52 @@
-<p>createride works!</p>
+
+<div  class="wrapper  createRideContainer" style="margin: 0;" >
+    <div class="text-center mt-4 name" style="margin-bottom: 10px;">
+        CT- Create Ride
+    </div>
+
+    <form class="p-3 mt-3 registerAmination" [formGroup]="newRide">
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" placeholder="Ride Type" formControlName="ridetype">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" placeholder="Vehicle Number" formControlName="vehiclenumber">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" placeholder="Vehicle Colour" formControlName="vehiclecolor">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" placeholder="Vehicle Type" formControlName="vehicletype">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" placeholder="Ride From" formControlName="from">
+        </div>
+      
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="number" placeholder="Ride To" formControlName="to">
+        </div>
+      
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="number" placeholder="Fare" formControlName="fare">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="number" placeholder="Number Of Seats Available" formControlName="seats">
+        </div>
+      
+       
+       
+        <button class="btn mt-3" (click)="Submit()">submit</button>
+    </form>
+    <br>
+    <!-- <div class="text-center">
+        <a (click)="sharedDataService.isSignIn=true"><u> Back</u></a> 
+    </div> -->
+</div>
+

@@ -288,3 +288,8 @@ position: relative;
     padding-right: 0;
     order: 0;
 }
+
+.mat-mdc-dialog-container{
+  border-radius: var(--mdc-dialog-container-shape, var(--mdc-shape-medium,12px));
+  background-color: #ecf0f3
+}

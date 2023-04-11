@@ -1,7 +1,33 @@
+.viewContainer{
+    padding: 54px;
+    background: #ecf0f34d;
+    letter-spacing: 1px;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: #555;
+    background-color: #ecf0f3;
+    user-select: none;
+    /* box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff; */
+}
 .details{
     font-weight: 500;
     font-size: 1.4rem;
     letter-spacing: 1.3px;
     padding-left: 10px;
     color: #555;
+}
+td{
+    padding: 13px;
+    /* border-bottom: 1px solid #27434e4a; */
+    /* box-shadow: inset -2px 8px 8px #cbced1, inset -8px -8px 8px #ffff; */
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: #555;
+    text-align: center;
+    box-shadow: inset 0px 16px 10px -7px #cdced1, inset 0px -11px 5px -6px #fff;
+    background-color: #ecf0f3;
 }

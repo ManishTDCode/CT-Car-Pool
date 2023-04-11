@@ -1,8 +1,10 @@
 <div class="dashBoardpage">
     <div class="form-field d-flex align-items-center Header">
         <div class="text-center mt-4 name ">CT- Car Pool- Dashboard</div>
-        <div>
-            <button class="btn mt-3" style="border-radius: 2px;padding-left: 24px;padding-right: 24px;"> Create Ride </button>
+        <div class="userActionDiv">
+            <button class="btn mt-3 dashboardBtn" (click)="createRide('100ms', '100ms')"> Create Ride </button>
+            <button class="btn mt-3 dashboardBtn" matTooltip="Logout"> <mat-icon>logout</mat-icon> </button>
+            
         </div>
     </div>
     <div class="mat-elevation-z8 tableContainer">
@@ -62,8 +64,8 @@
             <!-- Delete Column -->
             <ng-container matColumnDef="Action">
                 <th class="tableFont" mat-header-cell *matHeaderCellDef> Action </th>
-                <td mat-cell *matCellDef="let element" style="text-align: center; cursor: pointer;">
-                    <button class="btn mt-3" style="margin: 10px;">
+                <td mat-cell *matCellDef="let element" style="text-align: center; cursor: pointer;"> 
+                    <button class="btn mt-3" style="margin: 10px;" >
                         Request Ride
                     </button>
                    
