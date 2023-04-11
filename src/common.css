@@ -76,7 +76,7 @@ position: relative;
 
 
 
-.wrapper .name {
+ .name {
 
     font-weight: 700;
 
@@ -141,7 +141,7 @@ position: relative;
 
 
 
-.wrapper .btn {
+.btn {
 
     box-shadow: none;
 
@@ -166,8 +166,8 @@ position: relative;
 
 
 
-.wrapper .btn:hover {
-
+.btn:hover {
+  color: #fff;
     background-color: #5a91a5;
 
 }
