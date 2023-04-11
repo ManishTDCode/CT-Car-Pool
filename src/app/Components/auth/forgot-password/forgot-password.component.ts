@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
-import { AlertifyService } from 'src/app/Services/alertify.service';
-
+import { AlertifyService } from '../../../Services/alertService/alertify.service';
+import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -12,7 +12,8 @@ import { AlertifyService } from 'src/app/Services/alertify.service';
 export class ForgotPasswordComponent implements OnInit {
   ForgotPassword!: FormGroup;
   submitted = false;
-  constructor (private fb: FormBuilder, private alertservice: AlertifyService, private router: Router) {
+  constructor (private fb: FormBuilder, private alertservice: AlertifyService,
+  private router: Router, public sharedDataService: SharedDataService) {
 
   }
   ngOnInit() {

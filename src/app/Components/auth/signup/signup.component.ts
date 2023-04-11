@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
-import { AlertifyService } from '../../../Services/alertify.service';
+import { AlertifyService } from '../../../Services/alertService/alertify.service';
 import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 import { AllserviceService } from 'src/app/Services/apiCallService/allservice.service';
 
@@ -44,20 +44,29 @@ export class SignupComponent implements OnInit {
     this.sharedDataService.isVehicle = false;
   }
 
-  getOTP() {
-    const user = {
-      username: this.SignUp.get('emailId')?.value,
-      password: this.SignUp.get('password')?.value
-    };
+  get f() { return this.SignUp.controls; }
 
-    Auth.signUp(user)
-      .then(data => {
-        console.log(data);
-        this.alertService.success('OTP sent successfully');
-      })
-      .catch(err => {
-        this.alertService.error(err.message);
-      });
+  getOTP() {
+    this.submitted = true;
+    if (this.SignUp.invalid) {
+      return;
+    }
+    else {
+      const user = {
+        username: this.SignUp.get('emailId')?.value,
+        password: this.SignUp.get('password')?.value
+      };
+  
+      Auth.signUp(user)
+        .then(data => {
+          console.log(data);
+          this.alertService.success('OTP sent successfully');
+        })
+        .catch(err => {
+          this.alertService.error(err.message);
+        });
+    }
+    
   }
 
   Submit() {

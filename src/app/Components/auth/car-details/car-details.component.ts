@@ -3,7 +3,7 @@ import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 import { AllserviceService } from 'src/app/Services/apiCallService/allservice.service';
 import { FormGroup, FormControl, Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
 import { Auth } from 'aws-amplify';
-import { AlertifyService } from '../../../Services/alertify.service';
+import { AlertifyService } from '../../../Services/alertService/alertify.service';
 
 @Component({
   selector: 'app-car-details',
@@ -33,6 +33,16 @@ export class CarDetailsComponent implements OnInit {
 
   onColrSelect(e:any){
     console.log(e);
+  }
+
+  vehicleType(e: any) {
+  this.carTypeList = [];
+  if(e.value === "Bike") {
+  this.carTypeList.push('Bike (1)');
+  }
+  else {
+    this.carTypeList.push('Hatchback (4)', 'Sedan (5)', 'SUV (7)');
+  }
   }
   
   saveData() {

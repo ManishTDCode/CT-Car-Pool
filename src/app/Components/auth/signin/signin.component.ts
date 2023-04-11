@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
-import { AlertifyService } from '../../../Services/alertify.service';
+import { AlertifyService } from '../../../Services/alertService/alertify.service';
 import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 export class SigninComponent implements OnInit {
   Login!: FormGroup;
   submitted = false;
-  
+  public loading = false;
 
   constructor(
     private fb: FormBuilder, 
@@ -36,6 +36,7 @@ export class SigninComponent implements OnInit {
       return;
     }
     else {
+      this.loading = true;
       let user = {
         username: this.Login.get('username')?.value,
         password: this.Login.get('password')?.value
@@ -45,9 +46,11 @@ export class SigninComponent implements OnInit {
         localStorage.setItem('userEmail', user.attributes.email);
         localStorage.setItem('idToken', user.signInUserSession.accessToken.jwtToken);
         localStorage.setItem("isLoggedIn", "Yes");
-        this.alertService.success('user logged in successfully');
+        this.loading = false;
+        this.router.navigate(['dashboard']);
       })
         .catch(err => {
+          this.loading = false;
           this.alertService.error(err.message);
         });
     }

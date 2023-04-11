@@ -13,14 +13,14 @@
             <span class="far fa-user"></span>
             <input type="text" formControlName="username" placeholder="Username" [ngClass]="{ 'is-invalid' : submitted && f.username.errors }">
             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div style="color: red;" *ngIf="f.username.errors.required">Username is required</div>
+            <div style="color: red; font-size:x-small;" *ngIf="f.username.errors.required">Username is required</div>
             </div>
         </div>
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
             <input type="password" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid' : submitted && f.password.errors }">
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div style="color: red;" *ngIf="f.password.errors.required">Password is required</div>
+                <div style="color: red; font-size:x-small;" *ngIf="f.password.errors.required">Password is required</div>
                 </div>
         </div>
         <button class="btn mt-3" (click)="login()">Login</button>
@@ -35,3 +35,17 @@
 
 <!-- Forgot password -->
 <app-forgot-password *ngIf="!sharedDataService.isSignIn && sharedDataService.isForgotPassword"></app-forgot-password>
+
+<!-- loader template -->
+<div class="my-container">
+    <ng-template #customLoadingTemplate>
+      <div class="custom-class">
+      </div>
+    </ng-template>
+  
+    <ngx-loading
+      [show]="loading"
+      [config]="{ backdropBorderRadius: '3px', primaryColour: '#5a91a5', secondaryColour: '#5a91a5', tertiaryColour: '#5a91a5' }"
+      [template]="customLoadingTemplate"
+    ></ngx-loading>
+  </div>
