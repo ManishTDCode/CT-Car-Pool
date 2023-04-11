@@ -7,7 +7,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { SigninComponent } from './signin/signin.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { CarDetailsComponent } from './car-details/car-details.component';
     AuthRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }

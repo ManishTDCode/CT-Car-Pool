@@ -57,6 +57,7 @@ export class SigninComponent implements OnInit {
   onSignUpclick() {
     this.sharedDataService.isSignIn = false;
     this.sharedDataService.isForgotPassword = false;
+    
   }
   onForgotPasswordclick() {
     this.sharedDataService.isSignIn = false;

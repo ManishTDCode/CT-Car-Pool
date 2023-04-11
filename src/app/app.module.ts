@@ -7,6 +7,7 @@ import { MaterialModule } from './material/material.module';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { CreaterideComponent } from './Components/createride/createride.component';
 import { ViewrideComponent } from './Components/viewride/viewride.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { ViewrideComponent } from './Components/viewride/viewride.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
