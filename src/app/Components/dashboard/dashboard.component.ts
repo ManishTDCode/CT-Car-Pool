@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewrideComponent } from '../viewride/viewride.component';
 import { CreaterideComponent } from '../createride/createride.component';
+import { AllserviceService } from 'src/app/Services/apiCallService/allservice.service';
+import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,67 +18,42 @@ export class DashboardComponent implements OnInit,AfterViewInit {
 
   displayedColumns: string[] = ["Name", "Mobile No", "Vehicle No", "Ride Type", "Number of Seats Available", "View", "Action"]
 
-  constructor( private dialog: MatDialog,) { }
+  constructor(
+    private dialog: MatDialog,
+    private allserviceService:AllserviceService,
+    private sharedDataService:SharedDataService
+    ) { }
 
   ngOnInit(): void {
 
-    this.dataSource.data = [
-      {
-        name: "Pallavi",
-        mobileNo: "0987654321",
-        vehicleNo: "MH4 16708",
-        rideType: "Car",
-        noOfSeats: 3
+    this.allserviceService.getUserDetails().subscribe((data:any)=>{
+        this.sharedDataService.userDetails = data.data;
+        console.log("this.sharedDataService.userDetails",this.sharedDataService.userDetails);
+        
+    })
+    this.getRideList();
 
-      },
-      {
-        name: "Pallavi",
-        mobileNo: "0987654321",
-        vehicleNo: "MH4 16708",
-        rideType: "Car",
-        noOfSeats: 3
+    this.sharedDataService.isRideCreated$.subscribe(data=>{
+      if(data){
+        this.getRideList();
+      }
+    })
 
-      },
-      {
-        name: "Pallavi",
-        mobileNo: "0987654321",
-        vehicleNo: "MH4 16708",
-        rideType: "Car",
-        noOfSeats: 3
 
-      },
-      {
-        name: "Pallavi",
-        mobileNo: "0987654321",
-        vehicleNo: "MH4 16708",
-        rideType: "Car",
-        noOfSeats: 3
+ 
 
-      },
-      {
-        name: "Pallavi",
-        mobileNo: "0987654321",
-        vehicleNo: "MH4 16708",
-        rideType: "Car",
-        noOfSeats: 3
-
-      },
-      {
-        name: "Pallavi",
-        mobileNo: "0987654321",
-        vehicleNo: "MH4 16708",
-        rideType: "Car",
-        noOfSeats: 3
-
-      },
-     
-      
-    ];
     if (this.dataSource.paginator) {
       this.dataSource.paginator = this.paginator;
       console.log("this.paginator", this.paginator);
     }
 
+  }
+
+  getRideList(){
+    this.allserviceService.getRides().subscribe((data:any)=>{
+      this.dataSource.data = data.data;
+      console.log("this.dataSource.data",this.dataSource.data);
+    });
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

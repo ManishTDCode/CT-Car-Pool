@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { AlertifyService } from 'src/app/Services/alertService/alertify.service';
 import { AllserviceService } from 'src/app/Services/apiCallService/allservice.service';
+import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 
 @Component({
   selector: 'app-createride',
@@ -14,7 +16,13 @@ export class CreaterideComponent implements OnInit {
   submitted = false;
   carTypeList = [];
 
-  constructor(private fb: FormBuilder, private service: AllserviceService, private alertService: AlertifyService) { }
+  constructor(
+    private fb: FormBuilder, 
+    private service: AllserviceService, 
+    private alertService: AlertifyService,
+    private sharedDataService:SharedDataService,
+    private dialog:MatDialog
+    ) { }
 
   ngOnInit(): void {
     this.newRide = this.fb.group({
@@ -27,6 +35,7 @@ export class CreaterideComponent implements OnInit {
       fare: ['', Validators.required],
       seats: ['', Validators.required],
     });
+    
   }
 
   vehicleType(e: any) {
@@ -49,6 +58,8 @@ export class CreaterideComponent implements OnInit {
     }
     else {
       let reqObj = {
+        name:this.sharedDataService.userDetails[0].name,
+        mobileNo:this.sharedDataService.userDetails[0].mobileNumber,
         ridetype: this.newRide.get('ridetype').value,
         vehiclenumber: this.newRide.get('vehiclenumber').value,
         vehiclecolor: this.newRide.get('vehiclecolor').value,
@@ -56,11 +67,17 @@ export class CreaterideComponent implements OnInit {
         from: this.newRide.get('from').value,
         to: this.newRide.get('to').value,
         fare: this.newRide.get('fare').value,
-        seats: this.newRide.get('seats').value
+        seats: this.newRide.get('seats').value     
+        
       }
+      console.log("reqObj",reqObj);
+      
       this.service.createRide(reqObj).subscribe((res: any) => {
         if (res.status == true) {
+          this.sharedDataService.isRideCreated.next(true);
           this.alertService.success('Ride created successfully');
+          this.dialog.closeAll();
+          
         }
         else {
           this.alertService.error('something went wrong');

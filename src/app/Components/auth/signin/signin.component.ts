@@ -42,7 +42,7 @@ export class SigninComponent implements OnInit {
         password: this.Login.get('password')?.value
       };
       Auth.signIn(user).then(user => {
-        console.log(user);
+        console.log("user",user);
         localStorage.setItem('userEmail', user.attributes.email);
         localStorage.setItem('idToken', user.signInUserSession.accessToken.jwtToken);
         localStorage.setItem("isLoggedIn", "Yes");

@@ -17,8 +17,14 @@ export class AllserviceService {
   signUPDetails(data: any) {
     return this.http.post('http://localhost:7000/signup', data);
   }
+  getUserDetails() {
+    return this.http.get('http://localhost:7000/signup');
+  }
 
   createRide(data: any) {
     return this.http.post('http://localhost:7000/createRide', data);
+  }
+  getRides() {
+    return this.http.get('http://localhost:7000/createRide');
   }
 }

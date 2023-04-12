@@ -13,11 +13,11 @@ import { AlertifyService } from '../../../Services/alertService/alertify.service
 export class CarDetailsComponent implements OnInit {
   CarDetails!: FormGroup;
   submitted = false;
-  selectedCarType:any;
+  selectedCarType: any;
   carTypeList = [];
-  carType:any; 
+  carType: any;
 
-  constructor(private alertService: AlertifyService, private fb: FormBuilder, public sharedDataService:SharedDataService, private service: AllserviceService){}
+  constructor(private alertService: AlertifyService, private fb: FormBuilder, public sharedDataService: SharedDataService, private service: AllserviceService) { }
 
   ngOnInit() {
     this.CarDetails = this.fb.group({
@@ -29,44 +29,44 @@ export class CarDetailsComponent implements OnInit {
   }
 
   get f() { return this.CarDetails.controls; }
-  
 
-  onColrSelect(e:any){
+
+  onColrSelect(e: any) {
     console.log(e);
   }
 
   vehicleType(e: any) {
-  this.carTypeList = [];
-  if(e.value === "Bike") {
-  this.carTypeList.push('Bike (1)');
+    this.carTypeList = [];
+    if (e.value === "Bike") {
+      this.carTypeList.push('Bike (1)');
+    }
+    else {
+      this.carTypeList.push('Hatchback (4)', 'Sedan (5)', 'SUV (7)');
+    }
   }
-  else {
-    this.carTypeList.push('Hatchback (4)', 'Sedan (5)', 'SUV (7)');
-  }
-  }
-  
+
   saveData() {
     this.submitted = true;
     if (this.CarDetails.invalid) {
       return;
-    } 
-    else{
+    }
+    else {
 
       let emailId;
       let name;
       let mobileNo;
       let otp;
 
-      this.service.name.subscribe((value:any) => {
+      this.service.name.subscribe((value: any) => {
         name = value;
       });
-      this.service.emmailId.subscribe((value:any) => {
+      this.service.emmailId.subscribe((value: any) => {
         emailId = value;
       });
-      this.service.mobileNo.subscribe((value:any) => {
+      this.service.mobileNo.subscribe((value: any) => {
         mobileNo = value;
       });
-      this.service.otp.subscribe((value:any) => {
+      this.service.otp.subscribe((value: any) => {
         otp = value;
       });
       console.log(emailId);
@@ -84,22 +84,22 @@ export class CarDetailsComponent implements OnInit {
             "vehicleColor": this.CarDetails.get('vehiclecolor').value,
             "carType": this.CarDetails.get('cartype').value
           }
-          
-          this.service.signUPDetails(reqObj).subscribe((res:any) => {
+
+          this.service.signUPDetails(reqObj).subscribe((res: any) => {
             try {
               console.log(res);
-            } catch (error:any) {
+            } catch (error: any) {
               this.alertService.error(error);
             }
           }
           )
           this.sharedDataService.isSignIn = true;
-          }
+        }
         )
         .catch(err => {
           this.alertService.error(err.message);
         });
     }
-    
+
   }
 }

@@ -1,5 +1,19 @@
+.createRideContainer1{
+    height: 595px;
+    overflow-y: scroll;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.createRideContainer1::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .createRideContainer1 {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 .createRideContainer{
-    padding: 46px 60px 46px 60px;
+    padding: 35px 60px 11px 60px;
     max-width: none;
     background: #ecf0f34d;
     letter-spacing: 1px;
@@ -9,6 +23,22 @@
     letter-spacing: 1px;
     color: #555;
     background-color: #ecf0f3;
-    user-select: none;
+    /* -webkit-user-select: none;
+    user-select: none; */
+    width: auto;
+    position: relative;
+    border-radius: 6px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    /* scroll-behavior: smooth; */
     /* box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff; */
+}
+.selectoptions{
+    padding: 10px;
+    height: 50px;
+    background-color: #396373;
+    color: white;
+}
+.selectoptions:hover{
+    color: red;
 }

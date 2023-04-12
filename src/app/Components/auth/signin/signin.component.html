@@ -11,23 +11,28 @@
     <form class="p-3 mt-3" [formGroup]="Login">
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="text" formControlName="username" placeholder="Username" [ngClass]="{ 'is-invalid' : submitted && f.username.errors }">
-            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div style="color: red; font-size:x-small;" *ngIf="f.username.errors.required">Username is required</div>
-            </div>
+            <input type="text" formControlName="username" placeholder="Username"
+                [ngClass]="{ 'is-invalid' : submitted && f.username.errors }">
+
+        </div>
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div class="errorMsg" *ngIf="f.username.errors.required">Username is required</div>
         </div>
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
-            <input type="password" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid' : submitted && f.password.errors }">
-            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div style="color: red; font-size:x-small;" *ngIf="f.password.errors.required">Password is required</div>
-                </div>
+            <input type="password" formControlName="password" placeholder="Password"
+                [ngClass]="{ 'is-invalid' : submitted && f.password.errors }">
+
+        </div>
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div class="errorMsg" *ngIf="f.password.errors.required">Password is required</div>
         </div>
         <button class="btn mt-3" (click)="login()">Login</button>
     </form>
     <br>
     <div class="text-center">
-        <a  (click)="onForgotPasswordclick()"><u> Forgot password?</u></a>&nbsp; or &nbsp;<a (click)="onSignUpclick()" style="cursor: pointer;"><u>Sign up</u></a>
+        <a (click)="onForgotPasswordclick()"><u> Forgot password?</u></a>&nbsp; or &nbsp;<a (click)="onSignUpclick()"
+            style="cursor: pointer;"><u>Sign up</u></a>
     </div>
 </div>
 <!-- SignUp  -->
@@ -39,13 +44,11 @@
 <!-- loader template -->
 <div class="my-container">
     <ng-template #customLoadingTemplate>
-      <div class="custom-class">
-      </div>
+        <div class="custom-class">
+        </div>
     </ng-template>
-  
-    <ngx-loading
-      [show]="loading"
-      [config]="{ backdropBorderRadius: '3px', primaryColour: '#5a91a5', secondaryColour: '#5a91a5', tertiaryColour: '#5a91a5' }"
-      [template]="customLoadingTemplate"
-    ></ngx-loading>
-  </div>
+
+    <ngx-loading [show]="loading"
+        [config]="{ backdropBorderRadius: '3px', primaryColour: '#5a91a5', secondaryColour: '#5a91a5', tertiaryColour: '#5a91a5' }"
+        [template]="customLoadingTemplate"></ngx-loading>
+</div>

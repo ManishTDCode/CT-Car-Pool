@@ -293,3 +293,15 @@ position: relative;
   border-radius: var(--mdc-dialog-container-shape, var(--mdc-shape-medium,12px));
   background-color: #ecf0f3
 }
+select{
+  width: 100%;
+  box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+  height: 34px;
+}
+.errorMsg{
+  color: red;
+  font-size: smaller;
+  position: relative;
+  top: -18px;
+  left: 21px;
+}
