@@ -10,6 +10,7 @@ import { ViewrideComponent } from './Components/viewride/viewride.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxLoadingModule } from "ngx-loading";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReqInterceptorInterceptor } from './Services/reqInterceptor/req-interceptor.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     NgxLoadingModule.forRoot({})
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ReqInterceptorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

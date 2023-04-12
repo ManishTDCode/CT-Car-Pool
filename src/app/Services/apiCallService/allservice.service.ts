@@ -13,7 +13,12 @@ export class AllserviceService {
   emmailId = new BehaviorSubject('');
   mobileNo = new BehaviorSubject('');
   otp = new BehaviorSubject('');
-  signUPDetails(data:any) {
-    return this.http.post('http://localhost:7000/signup',data);
-    }
+
+  signUPDetails(data: any) {
+    return this.http.post('http://localhost:7000/signup', data);
+  }
+
+  createRide(data: any) {
+    return this.http.post('http://localhost:7000/createRide', data);
+  }
 }

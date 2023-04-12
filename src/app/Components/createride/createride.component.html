@@ -1,47 +1,81 @@
-
-<div  class="wrapper  createRideContainer" style="margin: 0;" >
+<div class="wrapper  createRideContainer" style="margin: 0;">
     <div class="text-center mt-4 name" style="margin-bottom: 10px;">
         CT- Create Ride
     </div>
 
     <form class="p-3 mt-3 registerAmination" [formGroup]="newRide">
-        <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="text" placeholder="Ride Type" formControlName="ridetype">
+        <mat-radio-group #vehicle aria-label="Select an option" (change)="vehicleType($event)"
+            formControlName="ridetype" [ngClass]="{ 'is-invalid' : submitted && f.ridetype.errors }">
+
+            <mat-radio-button value="Car"> Car </mat-radio-button>
+            <mat-radio-button value="Bike"> Bike </mat-radio-button>
+        </mat-radio-group>
+        <div *ngIf="submitted && f.ridetype.errors" class="invalid-feedback">
+            <div style="color: red; font-size:x-small;" *ngIf="f.ridetype.errors.required">ride type is required</div>
         </div>
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
-            <input type="text" placeholder="Vehicle Number" formControlName="vehiclenumber">
+            <input type="text" placeholder="Vehicle Number" formControlName="vehiclenumber"
+                [ngClass]="{ 'is-invalid' : submitted && f.vehiclenumber.errors }">
+            <div *ngIf="submitted && f.vehiclenumber.errors" class="invalid-feedback">
+                <div style="color: red; font-size:x-small;" *ngIf="f.vehiclenumber.errors.required">vehicle number is
+                    required</div>
+            </div>
         </div>
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
-            <input type="text" placeholder="Vehicle Colour" formControlName="vehiclecolor">
+            <input type="text" placeholder="Vehicle Colour" formControlName="vehiclecolor"
+                [ngClass]="{ 'is-invalid' : submitted && f.vehiclecolor.errors }">
+            <div *ngIf="submitted && f.vehiclecolor.errors" class="invalid-feedback">
+                <div style="color: red; font-size:x-small;" *ngIf="f.vehiclecolor.errors.required">vehicle color is
+                    required</div>
+            </div>
+        </div>
+        <select name="cars" id="cars" class="form-field d-flex align-items-center selectoption"
+            formControlName="vehicletype" [ngClass]="{ 'is-invalid' : submitted && f.vehicletype.errors }">
+            <option [disabled]="true">Choose a Car Type</option>
+            <option *ngFor="let data of carTypeList" value="{{data}}">{{data}}</option>
+        </select>
+        <div *ngIf="submitted && f.vehicletype.errors" class="invalid-feedback">
+            <div style="color: red; font-size:x-small;" *ngIf="f.vehicletype.errors.required">car type is required</div>
         </div>
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
-            <input type="text" placeholder="Vehicle Type" formControlName="vehicletype">
+            <input type="text" placeholder="Ride From" formControlName="from"
+                [ngClass]="{ 'is-invalid' : submitted && f.from.errors }">
+            <div *ngIf="submitted && f.from.errors" class="invalid-feedback">
+                <div style="color: red; font-size:x-small;" *ngIf="f.from.errors.required">from is required</div>
+            </div>
+        </div>
+
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="text" placeholder="Ride To" formControlName="to"
+                [ngClass]="{ 'is-invalid' : submitted && f.to.errors }">
+            <div *ngIf="submitted && f.to.errors" class="invalid-feedback">
+                <div style="color: red; font-size:x-small;" *ngIf="f.to.errors.required">to is required</div>
+            </div>
+        </div>
+
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="number" placeholder="Fare" formControlName="fare"
+                [ngClass]="{ 'is-invalid' : submitted && f.fare.errors }">
+            <div *ngIf="submitted && f.fare.errors" class="invalid-feedback">
+                <div style="color: red; font-size:x-small;" *ngIf="f.fare.errors.required">fare is required</div>
+            </div>
         </div>
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
-            <input type="text" placeholder="Ride From" formControlName="from">
+            <input type="number" placeholder="Number Of Seats Available" formControlName="seats"
+                [ngClass]="{ 'is-invalid' : submitted && f.seats.errors }">
+            <div *ngIf="submitted && f.seats.errors" class="invalid-feedback">
+                <div style="color: red; font-size:x-small;" *ngIf="f.seats.errors.required">seats is required</div>
+            </div>
         </div>
-      
-        <div class="form-field d-flex align-items-center">
-            <span class="fas fa-key"></span>
-            <input type="number" placeholder="Ride To" formControlName="to">
-        </div>
-      
-        <div class="form-field d-flex align-items-center">
-            <span class="fas fa-key"></span>
-            <input type="number" placeholder="Fare" formControlName="fare">
-        </div>
-        <div class="form-field d-flex align-items-center">
-            <span class="fas fa-key"></span>
-            <input type="number" placeholder="Number Of Seats Available" formControlName="seats">
-        </div>
-      
-       
-       
+
+
+
         <button class="btn mt-3" (click)="Submit()">submit</button>
     </form>
     <br>
@@ -49,4 +83,3 @@
         <a (click)="sharedDataService.isSignIn=true"><u> Back</u></a> 
     </div> -->
 </div>
-
