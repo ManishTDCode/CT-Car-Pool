@@ -4,6 +4,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewrideComponent } from '../viewride/viewride.component';
 import { CreaterideComponent } from '../createride/createride.component';
+import { Auth } from 'aws-amplify';
+import { Router } from '@angular/router';
+import { AlertifyService } from 'src/app/Services/alertService/alertify.service';
 import { AllserviceService } from 'src/app/Services/apiCallService/allservice.service';
 import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 
@@ -12,7 +15,8 @@ import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit,AfterViewInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
+  public loading = false;
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   dataSource = new MatTableDataSource<any>()
 
@@ -20,9 +24,28 @@ export class DashboardComponent implements OnInit,AfterViewInit {
 
   constructor(
     private dialog: MatDialog,
-    private allserviceService:AllserviceService,
-    private sharedDataService:SharedDataService
-    ) { }
+     private router: Router,
+      private alertService: AlertifyService,
+      private allserviceService:AllserviceService,
+      private sharedDataService:SharedDataService
+      ) { }
+
+  logOut() {
+    this.loading = true;
+    Auth.signOut()
+      .then(data => {
+        this.alertService.success('Logout Successfull');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('idToken');
+        this.router.navigate(['/']);
+        this.loading = false;
+      })
+      .catch(err => {
+        this.alertService.error(err);
+        this.loading = false;
+      });
+  }
+ 
 
   ngOnInit(): void {
 
@@ -37,11 +60,7 @@ export class DashboardComponent implements OnInit,AfterViewInit {
       if(data){
         this.getRideList();
       }
-    })
-
-
- 
-
+    });
     if (this.dataSource.paginator) {
       this.dataSource.paginator = this.paginator;
       console.log("this.paginator", this.paginator);
@@ -60,22 +79,22 @@ export class DashboardComponent implements OnInit,AfterViewInit {
     console.log("this.paginator", this.paginator);
   }
 
-  viewRideDetails(data: any, enterAnimationDuration: string, exitAnimationDuration: string){
+  viewRideDetails(data: any, enterAnimationDuration: string, exitAnimationDuration: string) {
     const dialogRef = this.dialog.open(ViewrideComponent, {
       width: 'auto',
       maxWidth: '100%',
       height: "auto",
-      
+
       enterAnimationDuration,
       exitAnimationDuration,
     });
   }
-  createRide(enterAnimationDuration: string, exitAnimationDuration: string){
+  createRide(enterAnimationDuration: string, exitAnimationDuration: string) {
     const dialogRef = this.dialog.open(CreaterideComponent, {
       width: '452px',
       maxWidth: '100%',
       height: "auto",
-      
+
       enterAnimationDuration,
       exitAnimationDuration,
     });

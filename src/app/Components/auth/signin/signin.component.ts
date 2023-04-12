@@ -16,16 +16,17 @@ export class SigninComponent implements OnInit {
   public loading = false;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private router: Router,
-     private alertService: AlertifyService,
-     public sharedDataService:SharedDataService
-    ) { }
+    private alertService: AlertifyService,
+    public sharedDataService: SharedDataService
+  ) { }
   ngOnInit() {
     this.Login = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+    localStorage.removeItem('isLoggedIn');
   }
 
   get f() { return this.Login.controls; }
@@ -55,12 +56,12 @@ export class SigninComponent implements OnInit {
         });
     }
   }
- 
+
 
   onSignUpclick() {
     this.sharedDataService.isSignIn = false;
     this.sharedDataService.isForgotPassword = false;
-    
+
   }
   onForgotPasswordclick() {
     this.sharedDataService.isSignIn = false;
