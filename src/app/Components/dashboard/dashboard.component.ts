@@ -108,11 +108,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   onDelete(data: any) {
     console.log("onDelete data",data);
-    
-    this.allserviceService.deleteDashboardRide(data._id).subscribe(res=>{
-      setTimeout(() => {
-        this.getRideList();
-      }, 100);
-    })
+    if(data.mobileNo ===  this.usermobileNo){
+      this.allserviceService.deleteDashboardRide(data._id).subscribe(res=>{
+        setTimeout(() => {
+          this.getRideList();
+        }, 100);
+      });
+    }
+  
   }
 }
