@@ -17,18 +17,19 @@ import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   public loading = false;
+  usermobileNo: any;
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   dataSource = new MatTableDataSource<any>()
 
-  displayedColumns: string[] = ["Name", "Mobile No", "Vehicle No", "Ride Type", "Number of Seats Available", "View", "Action"]
+  displayedColumns: string[] = ["Name", "Mobile No", "Vehicle No", "Ride Type", "Number of Seats Available", "View", "Action", "Delete"]
 
   constructor(
     private dialog: MatDialog,
-     private router: Router,
-      private alertService: AlertifyService,
-      private allserviceService:AllserviceService,
-      private sharedDataService:SharedDataService
-      ) { }
+    private router: Router,
+    private alertService: AlertifyService,
+    private allserviceService: AllserviceService,
+    private sharedDataService: SharedDataService
+  ) { }
 
   logOut() {
     this.loading = true;
@@ -45,19 +46,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.loading = false;
       });
   }
- 
+
 
   ngOnInit(): void {
+    console.log("this.dataSource.data", this.dataSource.data);
 
-    this.allserviceService.getUserDetails().subscribe((data:any)=>{
-        this.sharedDataService.userDetails = data.data;
-        console.log("this.sharedDataService.userDetails",this.sharedDataService.userDetails);
-        
+    this.allserviceService.getUserDetails().subscribe((data: any) => {
+      this.sharedDataService.userDetails = data.data;
+      this.usermobileNo = this.sharedDataService.userDetails[0].mobileNumber;
+      console.log("this.sharedDataService.userDetails", this.sharedDataService.userDetails);
+
     })
     this.getRideList();
 
-    this.sharedDataService.isRideCreated$.subscribe(data=>{
-      if(data){
+    this.sharedDataService.isRideCreated$.subscribe(data => {
+      if (data) {
         this.getRideList();
       }
     });
@@ -68,10 +71,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   }
 
-  getRideList(){
-    this.allserviceService.getRides().subscribe((data:any)=>{
+  getRideList() {
+    this.allserviceService.getDashboardRidesList().subscribe((data: any) => {
       this.dataSource.data = data.data;
-      console.log("this.dataSource.data",this.dataSource.data);
+      console.log("this.dataSource.data", this.dataSource.data);
     });
   }
   ngAfterViewInit() {
@@ -88,6 +91,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       enterAnimationDuration,
       exitAnimationDuration,
     });
+    let instance = dialogRef.componentInstance;
+    instance.reideDetails = data;
+    console.log("data - viewRideDetails", data);
+
   }
   createRide(enterAnimationDuration: string, exitAnimationDuration: string) {
     const dialogRef = this.dialog.open(CreaterideComponent, {
@@ -98,5 +105,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       enterAnimationDuration,
       exitAnimationDuration,
     });
+  }
+  onDelete(data: any) {
+    console.log("onDelete data",data);
+    
+    this.allserviceService.deleteDashboardRide(data._id).subscribe(res=>{
+      setTimeout(() => {
+        this.getRideList();
+      }, 100);
+    })
   }
 }

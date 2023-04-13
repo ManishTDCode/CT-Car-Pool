@@ -8,7 +8,7 @@
     letter-spacing: 1px;
     color: #555;
     background-color: #ecf0f3;
-    user-select: none;
+    /* user-select: none; */
     /* box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff; */
 }
 .details{

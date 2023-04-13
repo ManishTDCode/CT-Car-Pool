@@ -24,7 +24,13 @@ export class AllserviceService {
   createRide(data: any) {
     return this.http.post('http://localhost:7000/createRide', data);
   }
-  getRides() {
+  getDashboardRidesList() {
     return this.http.get('http://localhost:7000/createRide');
+  }
+  deleteDashboardRide(id:any) {
+    return this.http.delete('http://localhost:7000/createRide/' + id);
+  }
+  getRideDetailsforView(id) {
+    return this.http.get('http://localhost:7000/createRide/' + id);
   }
 }
