@@ -1,0 +1,54 @@
+<div class="createRideContainer1">
+    <div class="wrapper  createRideContainer" style="margin: 0;">
+        <div class="text-center mt-4 name" style="margin-bottom: 10px;">
+            CT- Create Ride
+        </div>
+
+        <form class="p-3 mt-3 registerAmination" [formGroup]="requestRide">
+
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="text" placeholder="From" formControlName="from"
+                    [ngClass]="{ 'is-invalid' : submitted && f.from.errors }">
+
+            </div>
+            <div *ngIf="submitted && f.from.errors" class="invalid-feedback">
+                <div class="errorMsg" *ngIf="f.from.errors.required">from is
+                    required</div>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="text" placeholder="To" formControlName="to"
+                    [ngClass]="{ 'is-invalid' : submitted && f.to.errors }">
+
+            </div>
+            <div *ngIf="submitted && f.to.errors" class="invalid-feedback">
+                <div class="errorMsg" *ngIf="f.to.errors.required">to is
+                    required</div>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="time" placeholder="Time" formControlName="time"
+                    [ngClass]="{ 'is-invalid' : submitted && f.time.errors }">
+            </div>
+            <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
+                <div class="errorMsg" *ngIf="f.time.errors.required">time is required</div>
+            </div>
+
+            <button class="btn mt-3" (click)="Submit()">submit</button>
+        </form>
+        <br>
+    </div>
+</div>
+
+<!-- loader template -->
+<div class="my-container">
+    <ng-template #customLoadingTemplate>
+        <div class="custom-class">
+        </div>
+    </ng-template>
+
+    <ngx-loading [show]="loading"
+        [config]="{ backdropBorderRadius: '3px', primaryColour: '#5a91a5', secondaryColour: '#5a91a5', tertiaryColour: '#5a91a5' }"
+        [template]="customLoadingTemplate"></ngx-loading>
+</div>
