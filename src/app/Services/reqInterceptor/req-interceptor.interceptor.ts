@@ -7,11 +7,12 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ReqInterceptorInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('idToken');
@@ -23,6 +24,7 @@ export class ReqInterceptorInterceptor implements HttpInterceptor {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             alert('User is unauthorized');
+            this.router.navigate(['']);
           }
           else if (err.status === 500) {
             alert('Internal server error');

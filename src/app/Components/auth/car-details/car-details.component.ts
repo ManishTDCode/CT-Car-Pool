@@ -41,7 +41,7 @@ export class CarDetailsComponent implements OnInit {
       this.carTypeList.push('Bike (1)');
     }
     else {
-      this.carTypeList.push('Hatchback (4)', 'Sedan (5)', 'SUV (7)');
+      this.carTypeList.push('Hatchback (3)', 'Sedan (4)', 'SUV (6)');
     }
   }
 

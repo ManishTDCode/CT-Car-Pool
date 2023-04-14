@@ -11,11 +11,11 @@ import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
   styleUrls: ['./createride.component.css']
 })
 export class CreaterideComponent implements OnInit {
-
+  cartype: any;
   newRide!: FormGroup;
   submitted = false;
-  carTypeList = [];
-  rideType:any;
+  carTypeList = ['Hatchback (3)', 'Sedan (4)', 'SUV (6)'];
+  rideType: any;
   constructor(
     private fb: FormBuilder,
     private service: AllserviceService,
@@ -34,13 +34,43 @@ export class CreaterideComponent implements OnInit {
       to: ['', Validators.required],
       fare: ['', Validators.required],
       seats: ['', Validators.required],
+      time: ['', Validators.required],
+      date: ['', Validators.required]
     });
-    console.log("CreaterideComponent",this.sharedDataService.userDetails);
-    if(this.sharedDataService.userDetails && this.sharedDataService.userDetails.length>0 && this.sharedDataService.userDetails[0].rideType!==''){
-       this.newRide.controls.ridetype.setValue(this.sharedDataService.userDetails[0].carType)
+    console.log("CreaterideComponent", this.sharedDataService.userDetails);
+    if (this.sharedDataService.userDetails && this.sharedDataService.userDetails.length > 0 && this.sharedDataService.userDetails[0].rideType !== '') {
+
+
+
       this.newRide.controls.vehiclenumber.setValue(this.sharedDataService.userDetails[0].vehicleNumber)
+
       this.newRide.controls.vehiclecolor.setValue(this.sharedDataService.userDetails[0].vehicleColor)
-      this.newRide.controls.vehicletype.setValue(this.sharedDataService.userDetails[0].vehicletype)
+
+
+
+      this.newRide.controls.ridetype.setValue(this.sharedDataService.userDetails[0].rideType)
+
+      this.rideType = (this.sharedDataService.userDetails[0].rideType);
+
+
+
+
+      this.newRide.controls.vehicletype.setValue(this.sharedDataService.userDetails[0].carType)
+
+      this.cartype = (this.sharedDataService.userDetails[0].carType);
+
+      console.log("this.cartype", this.cartype);
+
+
+
+      if (this.cartype === "Bike (1)") {
+
+        this.carTypeList = [];
+
+        this.carTypeList.push('Bike (1)');
+
+      }
+
     }
   }
 
@@ -50,7 +80,7 @@ export class CreaterideComponent implements OnInit {
       this.carTypeList.push('Bike (1)');
     }
     else {
-      this.carTypeList.push('Hatchback (4)', 'Sedan (5)', 'SUV (7)');
+      this.carTypeList.push('Hatchback (3)', 'Sedan (4)', 'SUV (6)');
     }
   }
 
@@ -74,7 +104,9 @@ export class CreaterideComponent implements OnInit {
         from: this.newRide.get('from').value,
         to: this.newRide.get('to').value,
         fare: this.newRide.get('fare').value,
-        seats: this.newRide.get('seats').value
+        seats: this.newRide.get('seats').value,
+        time: this.newRide.get('time').value,
+        date: this.newRide.get('date').value
 
       }
       console.log("reqObj", reqObj);

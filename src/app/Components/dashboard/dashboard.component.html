@@ -2,7 +2,8 @@
     <div class="form-field d-flex align-items-center Header ">
         <div class="text-center mt-4 name ">CT- Car Pool- Dashboard</div>
         <div class="userActionDiv">
-            <button class="btn mt-3 dashboardBtn" [routerLink]="'/requestedRide'" (click)="requestRidedashborad('100ms', '100ms')"> Request Ride </button>
+            <button class="btn mt-3 dashboardBtn" *ngIf="requestedRideBTN" (click)="requestRidedashborad()"> Requested
+                Rides </button>
             <button class="btn mt-3 dashboardBtn" (click)="createRide('100ms', '100ms')"> Create Ride </button>
             <button class="btn mt-3 dashboardBtn" matTooltip="Logout" (click)="logOut()"> <mat-icon>logout</mat-icon>
             </button>

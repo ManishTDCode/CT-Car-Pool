@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormGroupDirective, FormBuilder } f
 import { AlertifyService } from 'src/app/Services/alertService/alertify.service';
 import { AllserviceService } from 'src/app/Services/apiCallService/allservice.service';
 import { MatDialog } from '@angular/material/dialog';
+import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 
 @Component({
   selector: 'app-request-ride',
@@ -18,7 +19,8 @@ export class RequestRideComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private service: AllserviceService,
-    private alertService: AlertifyService, private dialog: MatDialog) {
+    private alertService: AlertifyService, private dialog: MatDialog,
+    private sharedService: SharedDataService) {
 
   }
 
@@ -41,10 +43,11 @@ export class RequestRideComponent implements OnInit {
     }
     else {
       this.loading = true;
+
       const reqObj = {
         emailID: this.requestRideDetails.emailId,
-        mobileNo: this.requestRideDetails.mobileNo,
-        name: this.requestRideDetails.name,
+        mobileNo: this.sharedService.userDetails[0].mobileNumber,
+        name: this.sharedService.userDetails[0].name,
         from: this.requestRide.get('from').value,
         to: this.requestRide.get('to').value,
         time: this.requestRide.get('time').value

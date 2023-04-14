@@ -39,4 +39,13 @@ export class AllserviceService {
   requestRideSave(data: any) {
     return this.http.post('http://localhost:7000/requestRide', data);
   }
+  getRequestRide() {
+    return this.http.get('http://localhost:7000/requestRide');
+  }
+  deleteRequestRide(id: any) {
+    return this.http.delete('http://localhost:7000/requestRide/' + id);
+  }
+  updateSeats(id: any, data: any) {
+    return this.http.put('http://localhost:7000/createRide/' + id, data);
+  }
 }

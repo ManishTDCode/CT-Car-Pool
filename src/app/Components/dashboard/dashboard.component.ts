@@ -10,6 +10,7 @@ import { AlertifyService } from 'src/app/Services/alertService/alertify.service'
 import { AllserviceService } from 'src/app/Services/apiCallService/allservice.service';
 import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 import { RequestRideComponent } from '../request-ride/request-ride.component';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +19,7 @@ import { RequestRideComponent } from '../request-ride/request-ride.component';
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   public loading = false;
+  requestedRideBTN = false;
   usermobileNo: any;
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   dataSource = new MatTableDataSource<any>()
@@ -53,7 +55,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     console.log("this.dataSource.data", this.dataSource.data);
 
     this.allserviceService.getUserDetails().subscribe((data: any) => {
-      this.sharedDataService.userDetails = data.data;
+      let userEmail = localStorage.getItem('userEmail');
+      let userArray = [];
+      const userDetails = data.data.filter((x: any) =>
+        x.emailId == userEmail
+      );
+      this.sharedDataService.userDetails = userDetails;
       this.usermobileNo = this.sharedDataService.userDetails[0].mobileNumber;
       console.log("this.sharedDataService.userDetails", this.sharedDataService.userDetails);
 
@@ -69,6 +76,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator = this.paginator;
       console.log("this.paginator", this.paginator);
     }
+
+    this.allserviceService.getRequestRide().subscribe((res: any) => {
+      if (res.status == true && res.data.length > 0) {
+        let userEmail = localStorage.getItem('userEmail');
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i].requestedTo === userEmail) {
+            this.requestedRideBTN = true;
+          }
+          else {
+            this.requestedRideBTN = false;
+          }
+        }
+      }
+    })
 
   }
 
@@ -132,7 +153,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
   }
-  requestRidedashborad(enterAnimationDuration: string, exitAnimationDuration: string){
-
+  requestRidedashborad() {
+    this.router.navigate(['requestedRide']);
   }
 }
