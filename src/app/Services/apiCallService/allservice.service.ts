@@ -36,4 +36,7 @@ export class AllserviceService {
   requestRide(data: any) {
     return this.http.post('http://localhost:7000/sendEmail', data);
   }
+  requestRideSave(data: any) {
+    return this.http.post('http://localhost:7000/requestRide', data);
+  }
 }

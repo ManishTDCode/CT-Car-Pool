@@ -51,6 +51,23 @@ export class RequestRideComponent implements OnInit {
       }
       this.service.requestRide(reqObj).subscribe((res: any) => {
         if (res.status == true) {
+          //calling requestRide API
+          const reqObj = {
+            requestedTo: this.requestRideDetails.emailId,
+            requestedFrom: localStorage.getItem('userEmail'),
+            requestedFromfrom: this.requestRide.get('from').value,
+            requestedFromto: this.requestRide.get('to').value,
+            requestedFromTime: this.requestRide.get('time').value
+          }
+          this.service.requestRideSave(reqObj).subscribe((res: any) => {
+            if (res.status == true) {
+              this.alertService.success(res.message);
+            }
+            else {
+              this.alertService.error('something went wrong');
+            }
+          })
+          //
           this.loading = false;
           this.alertService.success(res.message);
           this.dialog.closeAll();
