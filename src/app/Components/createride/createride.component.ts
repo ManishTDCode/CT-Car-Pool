@@ -15,7 +15,7 @@ export class CreaterideComponent implements OnInit {
   newRide!: FormGroup;
   submitted = false;
   carTypeList = [];
-
+  rideType:any;
   constructor(
     private fb: FormBuilder,
     private service: AllserviceService,
@@ -35,6 +35,14 @@ export class CreaterideComponent implements OnInit {
       fare: ['', Validators.required],
       seats: ['', Validators.required],
     });
+    console.log("CreaterideComponent",this.sharedDataService.userDetails);
+    if(this.sharedDataService.userDetails && this.sharedDataService.userDetails.length>0 && this.sharedDataService.userDetails[0].rideType!==''){
+       this.newRide.controls.ridetype.setValue(this.sharedDataService.userDetails[0].carType)
+      this.newRide.controls.vehiclenumber.setValue(this.sharedDataService.userDetails[0].vehicleNumber)
+      this.newRide.controls.vehiclecolor.setValue(this.sharedDataService.userDetails[0].vehicleColor)
+      this.newRide.controls.vehicletype.setValue(this.sharedDataService.userDetails[0].vehicletype)
+    }
+    
 
   }
 

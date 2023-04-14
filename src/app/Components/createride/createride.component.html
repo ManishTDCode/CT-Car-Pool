@@ -6,9 +6,9 @@
 
         <form class="p-3 mt-3 registerAmination" [formGroup]="newRide">
             <div class="form-field d-flex align-items-center">
-                <mat-radio-group #vehicle (change)="vehicleType($event)" 
-                    formControlName="ridetype" [ngClass]="{ 'is-invalid' : submitted && f.ridetype.errors }">
-                    <mat-radio-button value="Car"  > Car </mat-radio-button>
+                <mat-radio-group #vehicle (change)="vehicleType($event)" formControlName="ridetype"
+                    [ngClass]="{ 'is-invalid' : submitted && f.ridetype.errors }">
+                    <mat-radio-button value="Car"> Car </mat-radio-button>
                     <mat-radio-button value="Bike"> Bike </mat-radio-button>
                 </mat-radio-group>
             </div>
@@ -39,7 +39,7 @@
             <select name="cars" id="cars" class="form-field d-flex align-items-center selectoption"
                 formControlName="vehicletype" [ngClass]="{ 'is-invalid' : submitted && f.vehicletype.errors }">
                 <!-- <option [disabled]="true" [selected]="true">Choose a Car Type</option> -->
-                <option  class="selectoptions" *ngFor="let data of carTypeList" value="{{data}}">{{data}}</option>
+                <option class="selectoptions" *ngFor="let data of carTypeList" value="{{data}}">{{data}}</option>
             </select>
 
             <div *ngIf="submitted && f.vehicletype.errors" class="invalid-feedback">
@@ -82,6 +82,9 @@
             </div>
             <div *ngIf="submitted && f.seats.errors" class="invalid-feedback">
                 <div class="errorMsg" *ngIf="f.seats.errors.required">seats is required</div>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <input type="time" id="appt" name="appt" min="09:00" max="18:00" required>
             </div>
 
 
