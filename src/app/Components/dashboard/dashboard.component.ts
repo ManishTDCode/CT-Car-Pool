@@ -93,7 +93,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       exitAnimationDuration,
     });
     let instance = dialogRef.componentInstance;
-    instance.reideDetails = data;
+    instance.rideDetails = data;
     console.log("data - viewRideDetails", data);
 
   }
@@ -130,6 +130,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }, 100);
       });
     }
+
+  }
+  requestRidedashborad(enterAnimationDuration: string, exitAnimationDuration: string){
 
   }
 }

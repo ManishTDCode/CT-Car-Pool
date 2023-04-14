@@ -12,13 +12,15 @@ import { NgxLoadingModule } from "ngx-loading";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReqInterceptorInterceptor } from './Services/reqInterceptor/req-interceptor.interceptor';
 import { RequestRideComponent } from './Components/request-ride/request-ride.component';
+import { RequestRideDashboardComponent } from './Components/request-ride-dashboard/request-ride-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     CreaterideComponent,
     ViewrideComponent,
-    RequestRideComponent
+    RequestRideComponent,
+    RequestRideDashboardComponent
   ],
   imports: [
     BrowserModule,

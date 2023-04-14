@@ -42,8 +42,6 @@ export class CreaterideComponent implements OnInit {
       this.newRide.controls.vehiclecolor.setValue(this.sharedDataService.userDetails[0].vehicleColor)
       this.newRide.controls.vehicletype.setValue(this.sharedDataService.userDetails[0].vehicletype)
     }
-    
-
   }
 
   vehicleType(e: any) {

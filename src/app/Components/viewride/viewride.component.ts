@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./viewride.component.css']
 })
 export class ViewrideComponent implements OnInit{
-  reideDetails:any;
+  rideDetails:any;
   constructor(){}
   ngOnInit(){
-   console.log("reideDetails",this.reideDetails);
+   console.log("rideDetails",this.rideDetails);
    
   }
 
