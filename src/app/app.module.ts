@@ -11,12 +11,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxLoadingModule } from "ngx-loading";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReqInterceptorInterceptor } from './Services/reqInterceptor/req-interceptor.interceptor';
+import { RequestRideComponent } from './Components/request-ride/request-ride.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     CreaterideComponent,
-    ViewrideComponent
+    ViewrideComponent,
+    RequestRideComponent
   ],
   imports: [
     BrowserModule,

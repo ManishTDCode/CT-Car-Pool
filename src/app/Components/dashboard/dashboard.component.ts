@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/Services/alertService/alertify.service';
 import { AllserviceService } from 'src/app/Services/apiCallService/allservice.service';
 import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
+import { RequestRideComponent } from '../request-ride/request-ride.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -96,6 +97,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     console.log("data - viewRideDetails", data);
 
   }
+
+  requestRide(data: any, enterAnimationDuration: string, exitAnimationDuration: string) {
+    const dialogRef = this.dialog.open(RequestRideComponent, {
+      width: 'auto',
+      maxWidth: '100%',
+      height: "auto",
+
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+    let instance = dialogRef.componentInstance;
+    instance.requestRideDetails = data;
+  }
+
   createRide(enterAnimationDuration: string, exitAnimationDuration: string) {
     const dialogRef = this.dialog.open(CreaterideComponent, {
       width: '452px',
@@ -107,14 +122,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
   }
   onDelete(data: any) {
-    console.log("onDelete data",data);
-    if(data.mobileNo ===  this.usermobileNo){
-      this.allserviceService.deleteDashboardRide(data._id).subscribe(res=>{
+    console.log("onDelete data", data);
+    if (data.mobileNo === this.usermobileNo) {
+      this.allserviceService.deleteDashboardRide(data._id).subscribe(res => {
         setTimeout(() => {
           this.getRideList();
         }, 100);
       });
     }
-  
+
   }
 }
