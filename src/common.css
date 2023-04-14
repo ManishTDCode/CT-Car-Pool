@@ -15,11 +15,11 @@
 
 
 
-body {
+/* body {
 
     background: #ecf0f3;
 
-}
+} */
 
 
 
@@ -169,6 +169,11 @@ position: relative;
 .btn:hover {
   color: #fff;
     background-color: #5a91a5;
+
+}
+.btn:focus{
+  color: #fff;
+    /* background-color: #5a91a5; */
 
 }
 
