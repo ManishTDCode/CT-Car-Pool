@@ -3955,3 +3955,17 @@ textarea.cdk-textarea-autosize-measuring-firefox {
     letter-spacing: .0073529412em;
     margin: 0 0 64px
 }
+.mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label{
+    color: white;
+  }
+  .mat-mdc-tab .mdc-tab__text-label{
+    color: white;
+  }
+  .mdc-tab{
+    color: white;
+    background-color: #396373;
+  }
+  
+  .mdc-tab--active{
+    background: #6093a7;
+  }

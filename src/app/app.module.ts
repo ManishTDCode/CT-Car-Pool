@@ -13,6 +13,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReqInterceptorInterceptor } from './Services/reqInterceptor/req-interceptor.interceptor';
 import { RequestRideComponent } from './Components/request-ride/request-ride.component';
 import { RequestRideDashboardComponent } from './Components/request-ride-dashboard/request-ride-dashboard.component';
+import { MyRidesComponent } from './Components/my-rides/my-rides.component';
+
+import { RideListComponent } from './Components/ride-list/ride-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,15 +24,19 @@ import { RequestRideDashboardComponent } from './Components/request-ride-dashboa
     CreaterideComponent,
     ViewrideComponent,
     RequestRideComponent,
-    RequestRideDashboardComponent
+    RequestRideDashboardComponent,
+    MyRidesComponent,
+    RideListComponent
   ],
   imports: [
     BrowserModule,
+    
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     NgxLoadingModule.forRoot({})
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: ReqInterceptorInterceptor, multi: true }],
