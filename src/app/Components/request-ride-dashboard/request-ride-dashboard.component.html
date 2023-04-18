@@ -1,4 +1,4 @@
-<div class="req_dashboard_Container">
+<div *ngIf="isrideDetails" class="req_dashboard_Container">
     <div *ngFor="let req of rideDetails" class="req_dashboard_Card registerAmination">
         <table class="table ">
             <tr>
@@ -26,10 +26,10 @@
 
 
     </div>
-
-
 </div>
-
+<div *ngIf="!isrideDetails" class="req_dashboard_Container">
+        Data is Not Found
+</div>
 <!-- loader template -->
 <div class="my-container">
     <ng-template #customLoadingTemplate>

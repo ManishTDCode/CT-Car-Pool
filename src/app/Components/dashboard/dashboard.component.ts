@@ -17,15 +17,10 @@ import { takeUntil } from 'rxjs';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
-  public loading = false;
-  requestedRideBTN = false;
-  usermobileNo: any;
-  @ViewChild(MatPaginator) paginator: MatPaginator | any;
-  dataSource = new MatTableDataSource<any>()
-
-  displayedColumns: string[] = ["Name", "Mobile No", "Vehicle No", "Ride Type", "Number of Seats Available", "View", "Action", "Delete"]
-
+export class DashboardComponent implements OnInit {
+  loading:any;
+  activeLink = 'link';
+  test = 0;
   constructor(
     private dialog: MatDialog,
     private router: Router,
@@ -34,6 +29,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private sharedDataService: SharedDataService
   ) { }
 
+
+  ngOnInit(): void {
+    this.allserviceService.getUserDetails().subscribe((data: any) => {
+      let userEmail = localStorage.getItem('userEmail');
+      const userDetails = data.data.filter((x: any) =>
+        x.emailId == userEmail
+      );
+      this.sharedDataService.userDetails = userDetails;
+
+    })
+
+  }
   logOut() {
     this.loading = true;
     Auth.signOut()
@@ -49,89 +56,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.loading = false;
       });
   }
-
-
-  ngOnInit(): void {
-    console.log("this.dataSource.data", this.dataSource.data);
-
-    this.allserviceService.getUserDetails().subscribe((data: any) => {
-      let userEmail = localStorage.getItem('userEmail');
-      let userArray = [];
-      const userDetails = data.data.filter((x: any) =>
-        x.emailId == userEmail
-      );
-      this.sharedDataService.userDetails = userDetails;
-      this.usermobileNo = this.sharedDataService.userDetails[0].mobileNumber;
-      console.log("this.sharedDataService.userDetails", this.sharedDataService.userDetails);
-
-    })
-    this.getRideList();
-
-    this.sharedDataService.isRideCreated$.subscribe(data => {
-      if (data) {
-        this.getRideList();
-      }
-    });
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator = this.paginator;
-      console.log("this.paginator", this.paginator);
-    }
-
-    this.allserviceService.getRequestRide().subscribe((res: any) => {
-      if (res.status == true && res.data.length > 0) {
-        let userEmail = localStorage.getItem('userEmail');
-        for (let i = 0; i < res.data.length; i++) {
-          if (res.data[i].requestedTo === userEmail) {
-            this.requestedRideBTN = true;
-          }
-          else {
-            this.requestedRideBTN = false;
-          }
-        }
-      }
-    })
-
-  }
-
-  getRideList() {
-    this.allserviceService.getDashboardRidesList().subscribe((data: any) => {
-      this.dataSource.data = data.data;
-      console.log("this.dataSource.data", this.dataSource.data);
-    });
-  }
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    console.log("this.paginator", this.paginator);
-  }
-
-  viewRideDetails(data: any, enterAnimationDuration: string, exitAnimationDuration: string) {
-    const dialogRef = this.dialog.open(ViewrideComponent, {
-      width: 'auto',
-      maxWidth: '100%',
-      height: "auto",
-
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-    let instance = dialogRef.componentInstance;
-    instance.rideDetails = data;
-    console.log("data - viewRideDetails", data);
-
-  }
-
-  requestRide(data: any, enterAnimationDuration: string, exitAnimationDuration: string) {
-    const dialogRef = this.dialog.open(RequestRideComponent, {
-      width: 'auto',
-      maxWidth: '100%',
-      height: "auto",
-
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-    let instance = dialogRef.componentInstance;
-    instance.requestRideDetails = data;
-  }
-
   createRide(enterAnimationDuration: string, exitAnimationDuration: string) {
     const dialogRef = this.dialog.open(CreaterideComponent, {
       width: '452px',
@@ -142,18 +66,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       exitAnimationDuration,
     });
   }
-  onDelete(data: any) {
-    console.log("onDelete data", data);
-    if (data.mobileNo === this.usermobileNo) {
-      this.allserviceService.deleteDashboardRide(data._id).subscribe(res => {
-        setTimeout(() => {
-          this.getRideList();
-        }, 100);
-      });
-    }
+  setTab(val:number){
+    this.test=val
+  }
 
-  }
-  requestRidedashborad() {
-    this.router.navigate(['requestedRide']);
-  }
+  
 }

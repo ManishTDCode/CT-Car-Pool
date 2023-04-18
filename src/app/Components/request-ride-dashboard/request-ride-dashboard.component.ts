@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AllserviceService } from 'src/app/Services/apiCallService/allservice.service';
 import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 import { AlertifyService } from 'src/app/Services/alertService/alertify.service';
@@ -10,17 +10,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./request-ride-dashboard.component.css']
 })
 export class RequestRideDashboardComponent implements OnInit {
+  @Output() showRideList = new EventEmitter<number>();
   rideDetails = [];
+  isrideDetails = false;
   public loading = false;
+  userEmailId:any;
   constructor(private service: AllserviceService, private sharedService: SharedDataService,
     private alertService: AlertifyService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loading = true;
+    this.userEmailId = localStorage.getItem('userEmail');
     this.service.getRequestRide().subscribe((res: any) => {
-      this.rideDetails = [];
-      for (let i = 0; i < res.data.length; i++) {
-        this.rideDetails.push(res.data[i]);
+      this.loading = false;
+      if (res.data.length > 0) {
+        this.isrideDetails = true;
+        this.rideDetails = [];
+        console.log("getRequestRide",res);
+        
+        res.data = res.data.filter((res: any)=> res.requestedTo===this.userEmailId)
+        for (let i = 0; i < res.data.length; i++) {
+          this.rideDetails.push(res.data[i]);
+        }
+        if(this.rideDetails.length>0){
+          this.isrideDetails = true;
+        }else{
+          this.isrideDetails = false;
+        }
+      }else{
+        this.isrideDetails = false;
       }
+
 
     })
   }
@@ -42,20 +62,11 @@ export class RequestRideDashboardComponent implements OnInit {
                 for (let j = 0; j < this.rideDetails.length; j++) {
                   if (res.data[i].emailId == this.rideDetails[j].requestedTo) {
                     let reqObj = {
-                      name: res.data[i].name,
-                      mobileNo: res.data[i].mobileNo,
-                      emailId: res.data[i].emailId,
-                      ridetype: res.data[i].ridetype,
-                      vehiclenumber: res.data[i].vehiclenumber,
-                      vehiclecolor: res.data[i].vehiclecolor,
-                      vehicletype: res.data[i].vehicletype,
-                      from: res.data[i].from,
-                      to: res.data[i].to,
-                      fare: res.data[i].fare,
+                     
                       seats: res.data[i].seats - 1
                     }
                     this.service.updateSeats(res.data[i]._id, reqObj).subscribe((res: any) => {
-
+                      this.showRideList.emit(0);
                     });
                   }
                 }
@@ -89,7 +100,7 @@ export class RequestRideDashboardComponent implements OnInit {
       if (res.status == true) {
         this.alertService.success('request rejected successfully');
         this.service.deleteRequestRide(requestId).subscribe((res: any) => {
-          this.router.navigate(['dashboard']);
+          this.showRideList.emit(0);
         });
         this.loading = false;
       }

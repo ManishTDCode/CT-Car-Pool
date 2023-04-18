@@ -1,9 +1,10 @@
+
 <div class="dashBoardpage">
     <div class="form-field d-flex align-items-center Header ">
-        <div class="text-center mt-4 name ">CT- Car Pool- Dashboard</div>
+        <div class="text-center mt-4 name " style="color: white;">CT- Car Pool- Dashboard</div>
         <div class="userActionDiv">
-            <button class="btn mt-3 dashboardBtn" *ngIf="requestedRideBTN" (click)="requestRidedashborad()"> Requested
-                Rides </button>
+            <!-- <button class="btn mt-3 dashboardBtn" *ngIf="requestedRideBTN" (click)="requestRidedashborad()"> Requested
+                Rides </button> -->
             <button class="btn mt-3 dashboardBtn" (click)="createRide('100ms', '100ms')"> Create Ride </button>
             <button class="btn mt-3 dashboardBtn" matTooltip="Logout" (click)="logOut()"> <mat-icon>logout</mat-icon>
             </button>
@@ -11,100 +12,22 @@
         </div>
     </div>
 
-    <div class="mat-elevation-z8 tableContainer tableAmination">
-        <table class="tableDesign" mat-table [dataSource]="dataSource">
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="Name">
-                <th class="tableFont" mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element">
-                    {{element.name}}
-                </td>
-            </ng-container>
-
-            <!-- Mobile No. Column -->
-            <ng-container matColumnDef="Mobile No">
-                <th class="tableFont" mat-header-cell *matHeaderCellDef> Mobile No. </th>
-                <td mat-cell *matCellDef="let element">
-                    {{element.mobileNo}}
-                </td>
-            </ng-container>
-
-            <!-- Vehicle No. Column -->
-            <ng-container matColumnDef="Vehicle No">
-                <th class="tableFont" mat-header-cell *matHeaderCellDef> Vehicle No. </th>
-                <td mat-cell *matCellDef="let element">
-                    {{element.vehiclenumber}}
-                </td>
-            </ng-container>
-
-            <!-- Ride Type Column -->
-            <ng-container matColumnDef="Ride Type">
-                <th class="tableFont" mat-header-cell *matHeaderCellDef> Ride Type </th>
-                <td mat-cell *matCellDef="let element">
-                    {{element.ridetype}}
-                </td>
-            </ng-container>
-
-            <!-- Number of Seats Available  Column -->
-            <ng-container matColumnDef="Number of Seats Available">
-                <th class="tableFont" mat-header-cell *matHeaderCellDef> Number of Seats Available </th>
-                <td mat-cell *matCellDef="let element">
-                    {{element.seats}}
-                </td>
-            </ng-container>
-
-            <!-- checkOut Column -->
-            <ng-container matColumnDef="View">
-                <th class="tableFont" mat-header-cell *matHeaderCellDef>Ride Details</th>
-                <td mat-cell *matCellDef="let element2" style="text-align: center;cursor: pointer;">
-                    <button class="btn mt-3" style="margin: 10px;" (click)="viewRideDetails(element2,'100ms', '100ms')">
-                        View
-                    </button>
-                    <!-- <mat-icon style="color: rgb(4, 255, 0);">checkout</mat-icon> -->
-                </td>
-            </ng-container>
-
-            <!-- Delete Column -->
-            <ng-container matColumnDef="Action">
-                <th class="tableFont" mat-header-cell *matHeaderCellDef> Action </th>
-                <td mat-cell *matCellDef="let element" style="text-align: center; cursor: pointer;">
-                    <button class="btn mt-3" style="margin: 10px;" (click)="requestRide(element, '100ms', '100ms')">
-                        Request Ride
-                    </button>
-
-                </td>
-            </ng-container>
-            <ng-container matColumnDef="Delete">
-                <th mat-header-cell *matHeaderCellDef> Delete </th>
-                <td mat-cell *matCellDef="let element" style="text-align: center; cursor: pointer;"
-                    (click)="onDelete(element)">
-                    <mat-icon
-                        [ngClass]="element.mobileNo ===  usermobileNo? 'delete_iconEnable' : ''">delete_outline</mat-icon>
-                </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-
-        <mat-paginator class="paginationDiv" [pageSizeOptions]="[7]" showFirstLastButtons
-            aria-label="Select page of cart Product ">
-        </mat-paginator>
-
-    </div>
-
-
-</div>
-
-
-<!-- loader template -->
-<div class="my-container">
-    <ng-template #customLoadingTemplate>
-        <div class="custom-class">
-        </div>
-    </ng-template>
-
-    <ngx-loading [show]="loading"
-        [config]="{ backdropBorderRadius: '3px', primaryColour: '#5a91a5', secondaryColour: '#5a91a5', tertiaryColour: '#5a91a5' }"
-        [template]="customLoadingTemplate"></ngx-loading>
-</div>
+  <mat-tab-group [(selectedIndex)]="test">
+    <mat-tab label="Rides" >
+      <ng-template matTabContent >
+        <app-ride-list></app-ride-list> 
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="My Rides">
+      <ng-template matTabContent>
+        <app-my-rides></app-my-rides>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Requested Rides">
+      <ng-template matTabContent>
+        <app-request-ride-dashboard (showRideList)="setTab($event)"></app-request-ride-dashboard> 
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+  </div>
