@@ -33,3 +33,10 @@ td {
     box-shadow: inset 0px 16px 10px -7px #cdced1, inset 0px -11px 5px -6px #fff;
     background-color: #ecf0f3;
 }
+
+tr :first-child{
+    border-radius: 16px 0px 0px 16px;
+}
+tr :last-child{
+    border-radius: 0px 16px 16px 0px;
+}

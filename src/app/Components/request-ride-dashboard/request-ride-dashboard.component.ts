@@ -7,42 +7,38 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-request-ride-dashboard',
   templateUrl: './request-ride-dashboard.component.html',
-  styleUrls: ['./request-ride-dashboard.component.css']
+  styleUrls: ['./request-ride-dashboard.component.scss']
 })
 export class RequestRideDashboardComponent implements OnInit {
   @Output() showRideList = new EventEmitter<number>();
   rideDetails = [];
-  isrideDetails = false;
-  public loading = false;
-  userEmailId:any;
+
+  isData = false;
+  public loading = true;
+  userEmailId: any;
   constructor(private service: AllserviceService, private sharedService: SharedDataService,
     private alertService: AlertifyService, private router: Router) { }
 
   ngOnInit(): void {
     this.loading = true;
+    this.isData = false;
     this.userEmailId = localStorage.getItem('userEmail');
     this.service.getRequestRide().subscribe((res: any) => {
       this.loading = false;
       if (res.data.length > 0) {
-        this.isrideDetails = true;
         this.rideDetails = [];
-        console.log("getRequestRide",res);
-        
-        res.data = res.data.filter((res: any)=> res.requestedTo===this.userEmailId)
+        res.data = res.data.filter((res: any) => res.requestedTo === this.userEmailId)
         for (let i = 0; i < res.data.length; i++) {
           this.rideDetails.push(res.data[i]);
         }
-        if(this.rideDetails.length>0){
-          this.isrideDetails = true;
-        }else{
-          this.isrideDetails = false;
+        if (this.rideDetails.length > 0) {
+          this.isData = true;
         }
-      }else{
-        this.isrideDetails = false;
       }
-
-
-    })
+    },(error)=>{
+      this.loading = false;
+       this.isData = false;
+    });
   }
 
   async accept(emailTo: any, requestId: any) {
@@ -62,7 +58,7 @@ export class RequestRideDashboardComponent implements OnInit {
                 for (let j = 0; j < this.rideDetails.length; j++) {
                   if (res.data[i].emailId == this.rideDetails[j].requestedTo) {
                     let reqObj = {
-                     
+
                       seats: res.data[i].seats - 1
                     }
                     this.service.updateSeats(res.data[i]._id, reqObj).subscribe((res: any) => {

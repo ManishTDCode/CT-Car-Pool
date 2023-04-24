@@ -8,7 +8,7 @@ import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 @Component({
   selector: 'app-request-ride',
   templateUrl: './request-ride.component.html',
-  styleUrls: ['./request-ride.component.css']
+  styleUrls: ['./request-ride.component.scss']
 })
 export class RequestRideComponent implements OnInit {
 

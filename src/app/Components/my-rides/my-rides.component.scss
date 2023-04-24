@@ -63,3 +63,9 @@ td{
   from {transform: translateX(-1000px)}
   to {transform: translateX(0px)}
 }
+
+.my-container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }

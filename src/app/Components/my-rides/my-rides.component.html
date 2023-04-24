@@ -1,6 +1,6 @@
 
-<div class="mat-elevation-z8 tableContainer">
-    <table class="tableDesign" mat-table [dataSource]="dataSource">
+<div *ngIf="isData" class="mat-elevation-z8 tableContainer" >
+    <table class="tableDesign" mat-table [dataSource]="dataSource " >
 
         <!-- Name Column -->
         <ng-container matColumnDef="Name">
@@ -73,6 +73,9 @@
 
 </div>
 
+<div *ngIf="!isData && !loading" class="data_not_found_container">
+    <img src="../../../assets/noDataFound.png">
+</div>
 <!-- loader template -->
 <div class="my-container">
 <ng-template #customLoadingTemplate>

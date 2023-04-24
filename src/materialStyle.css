@@ -3969,3 +3969,20 @@ textarea.cdk-textarea-autosize-measuring-firefox {
   .mdc-tab--active{
     background: #6093a7;
   }
+  .mat-mdc-tab-labels {
+    display: flex;
+    flex: 1 0 auto;
+    background: #396373;
+}
+.mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
+    flex-grow: 1;
+    border-radius: 10px;
+}
+.mat-mdc-menu-panel.mat-mdc-menu-panel{
+    border-radius:18px;
+    min-width: 112px;
+    max-width: 280px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+}

@@ -18,11 +18,17 @@ import { RequestRideComponent } from '../request-ride/request-ride.component';
 export class RideListComponent {
   public loading = false;
   requestedRideBTN = false;
-  userEmail: any;
+  isData = false;
+  userEmail: string;
+  data: any;
+  toFilterData="All"
+  fromFilterData = "All";
+  rideFromList = [];
+  rideToList = [];
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   dataSource = new MatTableDataSource<any>()
 
-  displayedColumns: string[] = ["Name", "Mobile No", "Vehicle No", "Ride Type", "Number of Seats Available", "View", "Action"]
+  displayedColumns: string[] = ["Name", "Mobile No", "Vehicle No","Ride From","Ride To", "Number of Seats Available", "View", "Action"]
 
   constructor(
     private dialog: MatDialog,
@@ -32,7 +38,7 @@ export class RideListComponent {
     private sharedDataService: SharedDataService
   ) { }
 
- 
+
   ngOnInit(): void {
     console.log("this.dataSource.data", this.dataSource.data);
     this.userEmail = localStorage.getItem('userEmail');
@@ -50,9 +56,27 @@ export class RideListComponent {
 
   getRideList() {
     this.loading = true;
+    this.isData = false;
+    this.rideFromList = [];
+    this.rideToList = [];
     this.allserviceService.getDashboardRidesList().subscribe((data: any) => {
-      const result = data.data.filter(res => res.emailId !== this.userEmail);
+      const result = data.data.filter((res: { emailId: any; }) => res.emailId !== this.userEmail);
+      this.data = result;
       this.dataSource.data = result;
+      result.forEach(element => {
+        this.rideFromList.push(element.from);
+        this.rideToList.push(element.to);
+      });
+
+      this.rideToList = [...new Set(this.rideToList)];
+      this.rideFromList = [...new Set(this.rideFromList)];
+      
+      if (this.dataSource.data.length > 0) {
+        this.isData = true;
+      }
+      this.loading = false;
+    }, (error) => {
+      this.isData = false;
       this.loading = false;
     });
   }
@@ -79,15 +103,31 @@ export class RideListComponent {
   requestRide(data: any, enterAnimationDuration: string, exitAnimationDuration: string) {
     const dialogRef = this.dialog.open(RequestRideComponent, {
       width: 'auto',
-      maxWidth: '100%',
       height: "auto",
-
       enterAnimationDuration,
       exitAnimationDuration,
     });
     let instance = dialogRef.componentInstance;
     instance.requestRideDetails = data;
   }
-
- 
+  onToFilterSelect(event: any) {
+    this.toFilterData = event.target.value;
+    this.filterData();
+  }
+  onFromFilterSelect(event: any) {
+    this.fromFilterData = event.target.value;
+    this.filterData();
+  }
+  filterData(){
+    
+    if(this.fromFilterData === 'All' && this.toFilterData === 'All'){
+      this.dataSource.data = this.data;
+    }else if(this.fromFilterData !== 'All' && this.toFilterData === 'All'){
+      this.dataSource.data = this.data.filter(res => res.from.toLowerCase() === this.fromFilterData.toLowerCase());
+    }else if(this.fromFilterData === 'All' && this.toFilterData !== 'All'){
+      this.dataSource.data = this.data.filter(res => res.to.toLowerCase() === this.toFilterData.toLowerCase());
+    }else if(this.fromFilterData !== 'All' && this.toFilterData !== 'All'){
+      this.dataSource.data = this.data.filter((res: { to: any; from: any; }) => res.to.toLowerCase() === this.toFilterData.toLowerCase() && res.from.toLowerCase() === this.fromFilterData.toLowerCase());
+    }
+  }
 }

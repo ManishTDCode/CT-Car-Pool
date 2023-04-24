@@ -17,6 +17,7 @@ import { MyRidesComponent } from './Components/my-rides/my-rides.component';
 
 import { RideListComponent } from './Components/ride-list/ride-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RideFilterPipe } from './ride-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RequestRideComponent,
     RequestRideDashboardComponent,
     MyRidesComponent,
-    RideListComponent
+    RideListComponent,
+    RideFilterPipe
   ],
   imports: [
     BrowserModule,

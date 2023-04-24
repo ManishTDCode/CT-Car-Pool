@@ -1,37 +1,41 @@
-<div *ngIf="isrideDetails" class="req_dashboard_Container">
-    <div *ngFor="let req of rideDetails" class="req_dashboard_Card registerAmination">
-        <table class="table ">
-            <tr>
-                <td>Requested From</td>
-                <td><b>{{req.requestedFrom}}</b></td>
-            </tr>
-            <tr>
-                <td>Ride From</td>
-                <td><b>{{req.requestedFromfrom}}</b></td>
-            </tr>
-            <tr>
-                <td>Ride To</td>
-                <td><b>{{req.requestedFromto}}</b></td>
-            </tr>
-            <tr>
-                <td>Ride Time:</td>
-                <td><b>{{req.requestedFromTime}}</b></td>
-            </tr>
+<div class="rideRequests">
+    <div *ngIf="isData && !loading" class="req_dashboard_Container">
+        <div *ngFor="let req of rideDetails" class="req_dashboard_Card registerAmination">
+            <table class="table ">
+                <tr>
+                    <td>Requested From</td>
+                    <td><b>{{req.requestedFrom}}</b></td>
+                </tr>
+                <tr>
+                    <td>Ride From</td>
+                    <td><b>{{req.requestedFromfrom}}</b></td>
+                </tr>
+                <tr>
+                    <td>Ride To</td>
+                    <td><b>{{req.requestedFromto}}</b></td>
+                </tr>
+                <tr>
+                    <td>Ride Time:</td>
+                    <td><b>{{req.requestedFromTime}}</b></td>
+                </tr>
 
-        </table>
-        <div class="userAction">
-            <button class="btn mt-3 req-dashboardBtn " (click)="accept(req.requestedFrom, req._id)"> Accept </button>
-            <button class="btn mt-3 req-dashboardBtn" (click)="reject(req.requestedFrom, req._id)"> Reject </button>
+            </table>
+            <div class="userAction">
+                <button class="btn mt-3 req-dashboardBtn " (click)="accept(req.requestedFrom, req._id)"> Accept
+                </button>
+                <button class="btn mt-3 req-dashboardBtn" (click)="reject(req.requestedFrom, req._id)"> Reject </button>
+            </div>
+
+
         </div>
-
-
     </div>
-</div>
-<div *ngIf="!isrideDetails" class="req_dashboard_Container">
-        Data is Not Found
+    <div *ngIf="!isData && !loading" class="data_not_found_container">
+        <img src="../../../assets/noDataFound.png">
+    </div>
+
 </div>
 <!-- loader template -->
-<div class="my-container">
+<div *ngIf="loading" class="my-container">
     <ng-template #customLoadingTemplate>
         <div class="custom-class">
         </div>

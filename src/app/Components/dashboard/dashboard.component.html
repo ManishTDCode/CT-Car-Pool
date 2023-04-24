@@ -1,13 +1,15 @@
 
 <div class="dashBoardpage">
     <div class="form-field d-flex align-items-center Header ">
-        <div class="text-center mt-4 name " style="color: white;">CT- Car Pool- Dashboard</div>
+        <div class="text-center mt-4 name " style="color: white;"> CT- Car Pool- Dashboard</div>
         <div class="userActionDiv">
-            <!-- <button class="btn mt-3 dashboardBtn" *ngIf="requestedRideBTN" (click)="requestRidedashborad()"> Requested
-                Rides </button> -->
             <button class="btn mt-3 dashboardBtn" (click)="createRide('100ms', '100ms')"> Create Ride </button>
-            <button class="btn mt-3 dashboardBtn" matTooltip="Logout" (click)="logOut()"> <mat-icon>logout</mat-icon>
+           
+            <button class="btn mt-3 dashboardBtn userProfile" [matMenuTriggerFor]="menu1"> {{userName}}<mat-icon class="userIcon">account_circle</mat-icon>
             </button>
+            <mat-menu #menu1="matMenu">
+              <button mat-menu-item style="min-height:0;"  (click)="logOut()" >Logout <mat-icon>logout</mat-icon></button>
+            </mat-menu>
 
         </div>
     </div>

@@ -70,6 +70,10 @@ export class SignupComponent implements OnInit {
   }
 
   Submit() {
+    this.submitted = true;
+    if (this.SignUp.invalid) {
+      return;
+    }else{
       if(this.UserAction == "Submit") {
         this.sharedDataService.isVehicle = false;
         Auth.confirmSignUp(this.SignUp.get('emailId')?.value, this.SignUp.get('otp')?.value,
@@ -107,9 +111,10 @@ export class SignupComponent implements OnInit {
         this.service.emmailId.next(this.SignUp.get('emailId').value);
         this.service.mobileNo.next(this.SignUp.get('mobileNo').value);
         this.service.otp.next(this.SignUp.get('otp').value);
-
         this.sharedDataService.isVehicle = true;
+        this.UserAction = "Submit";
       }
+    }
       
   }
 }

@@ -12,11 +12,12 @@ import { RequestRideComponent } from '../request-ride/request-ride.component';
 @Component({
   selector: 'app-my-rides',
   templateUrl: './my-rides.component.html',
-  styleUrls: ['./my-rides.component.css']
+  styleUrls: ['./my-rides.component.scss']
 })
 export class MyRidesComponent {
   public loading = false;
   requestedRideBTN = false;
+  isData=false;
   userEmail: any;
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   dataSource = new MatTableDataSource<any>()
@@ -51,10 +52,17 @@ export class MyRidesComponent {
   }
 
   getRideList() {
+    this.isData = false;
     this.loading = true;
     this.allserviceService.getDashboardRidesList().subscribe((data: any) => {
       const result = data.data.filter(res => res.emailId === this.userEmail);
       this.dataSource.data = result;
+      if(this.dataSource.data.length>0){
+        this.isData = true;
+      }
+      this.loading = false;
+    },(error)=>{
+      this.isData = false;
       this.loading = false;
     });
   }
