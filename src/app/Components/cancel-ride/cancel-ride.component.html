@@ -1,3 +1,5 @@
+<div class="cancelRideContainer">
+
 <div *ngIf="isListEmpty" class="mat-elevation-z8 tableContainer">
     <table class="tableDesign" mat-table [dataSource]="dataSource">
 
@@ -59,19 +61,20 @@
 
 </div>
 
-<div *ngIf="!isListEmpty" class="req_dashboard_Container">
-    No rides found
+<div *ngIf="!isListEmpty && !loading" class="req_dashboard_Container name">
+    <!-- No rides found -->
+    <img src="../../../assets/noDataFound.png" style="width: 65%;">
 </div>
-
-
 <!-- loader template -->
-<div class="my-container">
+<div *ngIf="loading" class="my-container">
     <ng-template #customLoadingTemplate>
         <div class="custom-class">
         </div>
     </ng-template>
-
+    
     <ngx-loading [show]="loading"
         [config]="{ backdropBorderRadius: '3px', primaryColour: '#5a91a5', secondaryColour: '#5a91a5', tertiaryColour: '#5a91a5' }"
         [template]="customLoadingTemplate"></ngx-loading>
+    </div>
+    
 </div>
