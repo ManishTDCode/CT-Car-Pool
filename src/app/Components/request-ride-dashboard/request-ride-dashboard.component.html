@@ -18,30 +18,33 @@
                     <td>Ride Time:</td>
                     <td><b>{{req.requestedFromTime}}</b></td>
                 </tr>
-
+                <tr>
+                    <td>Ride Status:</td>
+                    <td><b>{{req.isAccepted == true ? 'Accepted' : 'Pending'}}</b></td>
+                </tr>
+    
             </table>
             <div class="userAction">
-                <button class="btn mt-3 req-dashboardBtn " (click)="accept(req.requestedFrom, req._id)"> Accept
-                </button>
+                <button class="btn mt-3 req-dashboardBtn " [disabled]="req.isAccepted"
+                    (click)="accept(req.requestedFrom, req._id)"> Accept </button>
                 <button class="btn mt-3 req-dashboardBtn" (click)="reject(req.requestedFrom, req._id)"> Reject </button>
             </div>
-
-
         </div>
     </div>
+
     <div *ngIf="!isData && !loading" class="data_not_found_container">
         <img src="../../../assets/noDataFound.png">
     </div>
+    <!-- loader template -->
+    <!-- loader template -->
+    <div class="my-container">
+        <ng-template #customLoadingTemplate>
+            <div class="custom-class">
+            </div>
+        </ng-template>
 
-</div>
-<!-- loader template -->
-<div *ngIf="loading" class="my-container">
-    <ng-template #customLoadingTemplate>
-        <div class="custom-class">
-        </div>
-    </ng-template>
-
-    <ngx-loading [show]="loading"
-        [config]="{ backdropBorderRadius: '3px', primaryColour: '#5a91a5', secondaryColour: '#5a91a5', tertiaryColour: '#5a91a5' }"
-        [template]="customLoadingTemplate"></ngx-loading>
+        <ngx-loading [show]="loading"
+            [config]="{ backdropBorderRadius: '3px', primaryColour: '#5a91a5', secondaryColour: '#5a91a5', tertiaryColour: '#5a91a5' }"
+            [template]="customLoadingTemplate"></ngx-loading>
+    </div>
 </div>

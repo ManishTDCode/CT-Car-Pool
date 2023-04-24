@@ -56,7 +56,7 @@ export class SignupComponent implements OnInit {
         username: this.SignUp.get('emailId')?.value,
         password: this.SignUp.get('password')?.value
       };
-  
+
       Auth.signUp(user)
         .then(data => {
           console.log(data);
@@ -66,7 +66,7 @@ export class SignupComponent implements OnInit {
           this.alertService.error(err.message);
         });
     }
-    
+
   }
 
   Submit() {
@@ -74,32 +74,32 @@ export class SignupComponent implements OnInit {
     if (this.SignUp.invalid) {
       return;
     }else{
-      if(this.UserAction == "Submit") {
-        this.sharedDataService.isVehicle = false;
-        Auth.confirmSignUp(this.SignUp.get('emailId')?.value, this.SignUp.get('otp')?.value,
+    if (this.UserAction == "Submit") {
+      this.sharedDataService.isVehicle = false;
+      Auth.confirmSignUp(this.SignUp.get('emailId')?.value, this.SignUp.get('otp')?.value,
         { forceAliasCreation: true }).then(data => {
           console.log(data);
-          if(this.UserAction === "Submit"){
-          this.alertService.success('User registered successfully');
-          let reqObj = {
-            "name": this.SignUp.get('name').value,
-            "emailId": this.SignUp.get('emailId').value,
-            "mobileNumber": this.SignUp.get('mobileNo').value,
-            "rideType": "",
-            "vehicleNumber": "",
-            "vehicleColor": "",
-            "carType": ""
-          }
-          
-          this.service.signUPDetails(reqObj).subscribe((res:any) => {
-            try {
-              console.log(res);
-            } catch (error:any) {
-              this.alertService.error(error);
+          if (this.UserAction === "Submit") {
+            this.alertService.success('User registered successfully');
+            let reqObj = {
+              "name": this.SignUp.get('name').value,
+              "emailId": this.SignUp.get('emailId').value,
+              "mobileNumber": this.SignUp.get('mobileNo').value,
+              "rideType": "",
+              "vehicleNumber": "",
+              "vehicleColor": "",
+              "carType": ""
             }
-          }
-          )
-          this.sharedDataService.isSignIn = true;
+
+            this.service.signUPDetails(reqObj).subscribe((res: any) => {
+              try {
+                console.log(res);
+              } catch (error: any) {
+                this.alertService.error(error);
+              }
+            }
+            )
+            this.sharedDataService.isSignIn = true;
           }
         })
         .catch(err => {

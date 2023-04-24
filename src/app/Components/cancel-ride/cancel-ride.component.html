@@ -1,0 +1,77 @@
+<div *ngIf="isListEmpty" class="mat-elevation-z8 tableContainer">
+    <table class="tableDesign" mat-table [dataSource]="dataSource">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="RequestedTo">
+            <th class="tableFont" mat-header-cell *matHeaderCellDef> Requested To </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.requestedTo}}
+            </td>
+        </ng-container>
+
+        <!-- Mobile No. Column -->
+        <ng-container matColumnDef="From">
+            <th class="tableFont" mat-header-cell *matHeaderCellDef> From </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.requestedFromfrom}}
+            </td>
+        </ng-container>
+
+        <!-- Vehicle No. Column -->
+        <ng-container matColumnDef="To">
+            <th class="tableFont" mat-header-cell *matHeaderCellDef> To </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.requestedFromto}}
+            </td>
+        </ng-container>
+
+        <!-- Ride Type Column -->
+        <ng-container matColumnDef="Time">
+            <th class="tableFont" mat-header-cell *matHeaderCellDef> Time </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.requestedFromTime}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="RideStatus">
+            <th class="tableFont" mat-header-cell *matHeaderCellDef> Ride Status </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.isAccepted ? 'Accepted' : 'Pending'}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Cancel">
+            <th class="tableFont" mat-header-cell *matHeaderCellDef> Cancel Ride</th>
+            <td mat-cell *matCellDef="let element2" style="text-align: center;cursor: pointer;">
+                <button class="btn mt-3" style="margin: 10px;" (click)="cancelRide(element2)">
+                    Cancel
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator class="paginationDiv" [pageSizeOptions]="[4]" showFirstLastButtons
+        aria-label="Select page of cart Product ">
+    </mat-paginator>
+
+</div>
+
+<div *ngIf="!isListEmpty" class="req_dashboard_Container">
+    No rides found
+</div>
+
+
+<!-- loader template -->
+<div class="my-container">
+    <ng-template #customLoadingTemplate>
+        <div class="custom-class">
+        </div>
+    </ng-template>
+
+    <ngx-loading [show]="loading"
+        [config]="{ backdropBorderRadius: '3px', primaryColour: '#5a91a5', secondaryColour: '#5a91a5', tertiaryColour: '#5a91a5' }"
+        [template]="customLoadingTemplate"></ngx-loading>
+</div>

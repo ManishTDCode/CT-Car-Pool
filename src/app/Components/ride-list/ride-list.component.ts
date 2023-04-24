@@ -130,4 +130,6 @@ export class RideListComponent {
       this.dataSource.data = this.data.filter((res: { to: any; from: any; }) => res.to.toLowerCase() === this.toFilterData.toLowerCase() && res.from.toLowerCase() === this.fromFilterData.toLowerCase());
     }
   }
+
+
 }

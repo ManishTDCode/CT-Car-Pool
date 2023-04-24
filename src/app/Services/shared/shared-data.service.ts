@@ -8,12 +8,17 @@ export class SharedDataService {
   isSignIn = true;
   isForgotPassword = false;
   isVehicle = false;
-  userDetails:any;
+  userDetails: any;
 
- 
+  public cancelRide = new Subject();
+  cancelRide$ = this.cancelRide.asObservable();
+
 
   public isRideCreated = new Subject();
   isRideCreated$ = this.isRideCreated.asObservable();
+
+  public isSeatUpdated = new Subject();
+  isSeatUpdated$ = this.isSeatUpdated.asObservable();
 
   constructor() { }
 }
