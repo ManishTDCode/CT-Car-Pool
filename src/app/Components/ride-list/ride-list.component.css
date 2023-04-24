@@ -1,14 +1,15 @@
-
-.tableContainer{
+.tableContainer {
     /* width: 98%;
     margin: 0 auto; */
 }
-.tableRow{
+
+.tableRow {
     padding-left: 10px;
     margin-bottom: 20px;
     box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
 }
-th{
+
+th {
     font-weight: 700;
     font-size: 1.3rem;
     letter-spacing: 1.3px;
@@ -16,12 +17,14 @@ th{
     color: #555;
     text-align: center;
     /* box-shadow: inset 0px 16px 10px -7px #cdced1, inset 0px -11px 5px -6px #fff;*/
-    
+
 }
-.mat-mdc-table .mat-mdc-header-cell{
-    background: #ecf0f3; 
+
+.mat-mdc-table .mat-mdc-header-cell {
+    background: #ecf0f3;
 }
-td{
+
+td {
     font-weight: 500;
     font-size: 1.3rem;
     letter-spacing: 1.3px;
@@ -30,36 +33,51 @@ td{
     text-align: center;
     box-shadow: inset 0px 16px 10px -7px #cdced1, inset 0px -11px 5px -6px #fff;
     background-color: #ecf0f3;
-   
+
 }
-.paginationDiv{
-    background: #ecf0f3; 
+
+.paginationDiv {
+    background: #ecf0f3;
 }
-.mat-elevation-z8{
+
+.mat-elevation-z8 {
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2), 0px 0px 0px 1px rgba(0, 0, 0, 0.14), 0px 0px 0px 1px rgba(0, 0, 0, 0.12);
 }
 
-.delete_iconEnable{
+.delete_iconEnable {
     color: red;
 }
 
 
 /* ANIMATIONS STARTS */
-.tableAmination{
+.tableAmination {
     animation-name: tablelist;
     animation-duration: 1s;
 
 }
+
 @keyframes tablelist {
-  from {transform: translateX(1000px)}
-  to {transform: translateX(0px)}
+    from {
+        transform: translateX(1000px)
+    }
+
+    to {
+        transform: translateX(0px)
+    }
 }
-.HeaderAnimation{
+
+.HeaderAnimation {
     animation-name: haeder;
     animation-duration: 1s;
 
 }
+
 @keyframes haeder {
-  from {transform: translateX(-1000px)}
-  to {transform: translateX(0px)}
+    from {
+        transform: translateX(-1000px)
+    }
+
+    to {
+        transform: translateX(0px)
+    }
 }

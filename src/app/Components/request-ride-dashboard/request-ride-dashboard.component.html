@@ -17,10 +17,15 @@
                 <td>Ride Time:</td>
                 <td><b>{{req.requestedFromTime}}</b></td>
             </tr>
+            <tr>
+                <td>Ride Status:</td>
+                <td><b>{{req.isAccepted == true ? 'Accepted' : 'Pending'}}</b></td>
+            </tr>
 
         </table>
         <div class="userAction">
-            <button class="btn mt-3 req-dashboardBtn " (click)="accept(req.requestedFrom, req._id)"> Accept </button>
+            <button class="btn mt-3 req-dashboardBtn " [disabled]="req.isAccepted"
+                (click)="accept(req.requestedFrom, req._id)"> Accept </button>
             <button class="btn mt-3 req-dashboardBtn" (click)="reject(req.requestedFrom, req._id)"> Reject </button>
         </div>
 
@@ -28,7 +33,7 @@
     </div>
 </div>
 <div *ngIf="!isrideDetails" class="req_dashboard_Container">
-        Data is Not Found
+    Data is Not Found
 </div>
 <!-- loader template -->
 <div class="my-container">

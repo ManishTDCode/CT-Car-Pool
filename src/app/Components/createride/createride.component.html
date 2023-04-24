@@ -18,7 +18,7 @@
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
                 <input type="text" placeholder="Vehicle Number" formControlName="vehiclenumber"
-                    [ngClass]="{ 'is-invalid' : submitted && f.vehiclenumber.errors }">
+                    [ngClass]="{ 'is-invalid' : submitted && f.vehiclenumber.errors }" maxlength="10">
 
             </div>
             <div *ngIf="submitted && f.vehiclenumber.errors" class="invalid-feedback">
@@ -74,7 +74,9 @@
                     <div class="form-field d-flex align-items-center">
                         <span class="fas fa-key"></span>
                         <input type="number" placeholder="Fare" formControlName="fare"
-                            [ngClass]="{ 'is-invalid' : submitted && f.fare.errors }">
+                            [ngClass]="{ 'is-invalid' : submitted && f.fare.errors }"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            maxlength="6">
 
                     </div>
                     <div *ngIf="submitted && f.fare.errors" class="invalid-feedback">
@@ -85,7 +87,9 @@
                     <div class="form-field d-flex align-items-center">
                         <span class="fas fa-key"></span>
                         <input type="number" placeholder="Number Of Seats Available" formControlName="seats"
-                            [ngClass]="{ 'is-invalid' : submitted && f.seats.errors }">
+                            [ngClass]="{ 'is-invalid' : submitted && f.seats.errors }"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            maxlength="1">
 
                     </div>
                     <div *ngIf="submitted && f.seats.errors" class="invalid-feedback">
@@ -94,7 +98,7 @@
                 </div>
                 <div class="section2-form-field">
                     <div class="form-field d-flex align-items-center">
-                        <input type="date"  formControlName="date" required>
+                        <input type="date" formControlName="date" required>
                     </div>
                     <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
                         <div class="errorMsg" *ngIf="f.date.errors.required">ride date is required</div>
@@ -103,7 +107,8 @@
                 <div class="section2-form-field">
 
                     <div class="form-field d-flex align-items-center">
-                        <input type="time" id="appt" name="appt" min="09:00" max="18:00" formControlName="time" required >
+                        <input type="time" id="appt" name="appt" min="09:00" max="18:00" formControlName="time"
+                            required>
                     </div>
                     <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
                         <div class="errorMsg" *ngIf="f.time.errors.required">ride time is required</div>

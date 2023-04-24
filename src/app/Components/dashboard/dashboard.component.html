@@ -1,22 +1,20 @@
-
 <div class="dashBoardpage">
-    <div class="form-field d-flex align-items-center Header ">
-        <div class="text-center mt-4 name " style="color: white;">CT- Car Pool- Dashboard</div>
-        <div class="userActionDiv">
-            <!-- <button class="btn mt-3 dashboardBtn" *ngIf="requestedRideBTN" (click)="requestRidedashborad()"> Requested
-                Rides </button> -->
-            <button class="btn mt-3 dashboardBtn" (click)="createRide('100ms', '100ms')"> Create Ride </button>
-            <button class="btn mt-3 dashboardBtn" matTooltip="Logout" (click)="logOut()"> <mat-icon>logout</mat-icon>
-            </button>
+  <div class="form-field d-flex align-items-center Header ">
+    <div class="text-center mt-4 name " style="color: white;">CT- Car Pool- Dashboard</div>
+    <div class="userActionDiv">
+      <button class="btn mt-3 dashboardBtn" (click)="cancelRide('100ms', '100ms')"> Cancel Ride </button>
+      <button class="btn mt-3 dashboardBtn" (click)="createRide('100ms', '100ms')"> Create Ride </button>
+      <button class="btn mt-3 dashboardBtn" matTooltip="Logout" (click)="logOut()"> <mat-icon>logout</mat-icon>
+      </button>
 
-        </div>
     </div>
+  </div>
 
 
   <mat-tab-group [(selectedIndex)]="test">
-    <mat-tab label="Rides" >
-      <ng-template matTabContent >
-        <app-ride-list></app-ride-list> 
+    <mat-tab label="Rides">
+      <ng-template matTabContent>
+        <app-ride-list></app-ride-list>
       </ng-template>
     </mat-tab>
     <mat-tab label="My Rides">
@@ -26,8 +24,20 @@
     </mat-tab>
     <mat-tab label="Requested Rides">
       <ng-template matTabContent>
-        <app-request-ride-dashboard (showRideList)="setTab($event)"></app-request-ride-dashboard> 
+        <app-request-ride-dashboard (showRideList)="setTab($event)"></app-request-ride-dashboard>
       </ng-template>
     </mat-tab>
   </mat-tab-group>
-  </div>
+</div>
+
+<!-- loader template -->
+<div class="my-container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+    </div>
+  </ng-template>
+
+  <ngx-loading [show]="loading"
+    [config]="{ backdropBorderRadius: '3px', primaryColour: '#5a91a5', secondaryColour: '#5a91a5', tertiaryColour: '#5a91a5' }"
+    [template]="customLoadingTemplate"></ngx-loading>
+</div>

@@ -32,7 +32,7 @@ export class RideListComponent {
     private sharedDataService: SharedDataService
   ) { }
 
- 
+
   ngOnInit(): void {
     console.log("this.dataSource.data", this.dataSource.data);
     this.userEmail = localStorage.getItem('userEmail');
@@ -89,5 +89,5 @@ export class RideListComponent {
     instance.requestRideDetails = data;
   }
 
- 
+
 }

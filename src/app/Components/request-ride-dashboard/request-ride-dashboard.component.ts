@@ -14,7 +14,8 @@ export class RequestRideDashboardComponent implements OnInit {
   rideDetails = [];
   isrideDetails = false;
   public loading = false;
-  userEmailId:any;
+  userEmailId: any;
+  rideStatus: any;
   constructor(private service: AllserviceService, private sharedService: SharedDataService,
     private alertService: AlertifyService, private router: Router) { }
 
@@ -26,18 +27,19 @@ export class RequestRideDashboardComponent implements OnInit {
       if (res.data.length > 0) {
         this.isrideDetails = true;
         this.rideDetails = [];
-        console.log("getRequestRide",res);
-        
-        res.data = res.data.filter((res: any)=> res.requestedTo===this.userEmailId)
+        console.log("getRequestRide", res);
+
+        res.data = res.data.filter((res: any) => res.requestedTo === this.userEmailId)
         for (let i = 0; i < res.data.length; i++) {
           this.rideDetails.push(res.data[i]);
         }
-        if(this.rideDetails.length>0){
+
+        if (this.rideDetails.length > 0) {
           this.isrideDetails = true;
-        }else{
+        } else {
           this.isrideDetails = false;
         }
-      }else{
+      } else {
         this.isrideDetails = false;
       }
 
@@ -55,14 +57,17 @@ export class RequestRideDashboardComponent implements OnInit {
     this.service.requestRide(reqObj).subscribe((res: any) => {
       if (res.status == true) {
         this.alertService.success('request accepted successfully');
-        this.service.deleteRequestRide(requestId).subscribe(async (res: any) => {
-          await this.service.getDashboardRidesList().subscribe((res: any) => {
+        let data = {
+          isAccepted: true
+        }
+        this.service.updaterequestRide(requestId, data).subscribe((res: any) => {
+          this.service.getDashboardRidesList().subscribe((res: any) => {
             if (res.status == true) {
               for (let i = 0; i < res.data.length; i++) {
                 for (let j = 0; j < this.rideDetails.length; j++) {
                   if (res.data[i].emailId == this.rideDetails[j].requestedTo) {
                     let reqObj = {
-                     
+
                       seats: res.data[i].seats - 1
                     }
                     this.service.updateSeats(res.data[i]._id, reqObj).subscribe((res: any) => {

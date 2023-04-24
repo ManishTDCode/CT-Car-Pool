@@ -11,6 +11,7 @@ import { AllserviceService } from 'src/app/Services/apiCallService/allservice.se
 import { SharedDataService } from 'src/app/Services/shared/shared-data.service';
 import { RequestRideComponent } from '../request-ride/request-ride.component';
 import { takeUntil } from 'rxjs';
+import { CancelRideComponent } from '../cancel-ride/cancel-ride.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,7 @@ import { takeUntil } from 'rxjs';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  loading:any;
+  loading: any;
   activeLink = 'link';
   test = 0;
   constructor(
@@ -31,6 +32,10 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.userDetails();
+  }
+
+  userDetails() {
     this.allserviceService.getUserDetails().subscribe((data: any) => {
       let userEmail = localStorage.getItem('userEmail');
       const userDetails = data.data.filter((x: any) =>
@@ -38,9 +43,9 @@ export class DashboardComponent implements OnInit {
       );
       this.sharedDataService.userDetails = userDetails;
 
-    })
-
+    });
   }
+
   logOut() {
     this.loading = true;
     Auth.signOut()
@@ -66,9 +71,21 @@ export class DashboardComponent implements OnInit {
       exitAnimationDuration,
     });
   }
-  setTab(val:number){
-    this.test=val
+
+  cancelRide(enterAnimationDuration: string, exitAnimationDuration: string) {
+    const dialogRef = this.dialog.open(CancelRideComponent, {
+      width: '750px',
+      maxWidth: '100%',
+      height: "auto",
+
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
-  
+  setTab(val: number) {
+    this.test = val
+  }
+
+
 }

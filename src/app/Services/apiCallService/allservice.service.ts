@@ -43,9 +43,14 @@ export class AllserviceService {
     return this.http.get('http://localhost:7000/requestRide');
   }
   deleteRequestRide(id: any) {
+    debugger
     return this.http.delete('http://localhost:7000/requestRide/' + id);
   }
   updateSeats(id: any, data: any) {
     return this.http.patch('http://localhost:7000/createRide/' + id, data);
+  }
+
+  updaterequestRide(id: any, data: any) {
+    return this.http.patch('http://localhost:7000/requestRide/' + id, data);
   }
 }

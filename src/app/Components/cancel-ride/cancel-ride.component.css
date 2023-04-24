@@ -1,0 +1,9 @@
+.req_dashboard_Container {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
