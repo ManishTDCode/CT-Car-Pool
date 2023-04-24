@@ -123,11 +123,11 @@ export class RideListComponent {
     if(this.fromFilterData === 'All' && this.toFilterData === 'All'){
       this.dataSource.data = this.data;
     }else if(this.fromFilterData !== 'All' && this.toFilterData === 'All'){
-      this.dataSource.data = this.data.filter(res => res.from.toLowerCase() === this.fromFilterData.toLowerCase());
+      this.dataSource.data = this.data.filter(res => res.from.toUpperCase() === this.fromFilterData.toUpperCase());
     }else if(this.fromFilterData === 'All' && this.toFilterData !== 'All'){
-      this.dataSource.data = this.data.filter(res => res.to.toLowerCase() === this.toFilterData.toLowerCase());
+      this.dataSource.data = this.data.filter(res => res.to.toUpperCase() === this.toFilterData.toUpperCase());
     }else if(this.fromFilterData !== 'All' && this.toFilterData !== 'All'){
-      this.dataSource.data = this.data.filter((res: { to: any; from: any; }) => res.to.toLowerCase() === this.toFilterData.toLowerCase() && res.from.toLowerCase() === this.fromFilterData.toLowerCase());
+      this.dataSource.data = this.data.filter((res: { to: any; from: any; }) => res.to.toUpperCase() === this.toFilterData.toUpperCase() && res.from.toUpperCase() === this.fromFilterData.toUpperCase());
     }
   }
 
