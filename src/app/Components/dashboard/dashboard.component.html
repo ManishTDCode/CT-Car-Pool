@@ -4,10 +4,11 @@
     <div class="userActionDiv">
       <button class="btn mt-3 dashboardBtn" (click)="cancelRide('100ms', '100ms')"> Cancel Ride </button>
       <button class="btn mt-3 dashboardBtn" (click)="createRide('100ms', '100ms')"> Create Ride </button>
-      <button class="btn mt-3 dashboardBtn userProfile" [matMenuTriggerFor]="menu1"> {{userName}}<mat-icon class="userIcon">account_circle</mat-icon>
+      <button class="btn mt-3 dashboardBtn userProfile" [matMenuTriggerFor]="menu1"> {{userName}}<mat-icon
+          class="userIcon">account_circle</mat-icon>
       </button>
       <mat-menu #menu1="matMenu">
-        <button mat-menu-item style="min-height:0;"  (click)="logOut()" >Logout <mat-icon>logout</mat-icon></button>
+        <button mat-menu-item style="min-height:0;" (click)="logOut()">Logout <mat-icon>logout</mat-icon></button>
       </mat-menu>
 
     </div>
@@ -25,7 +26,7 @@
         <app-my-rides></app-my-rides>
       </ng-template>
     </mat-tab>
-    <mat-tab label="Requested Rides">
+    <mat-tab label="Accept/Reject Rides">
       <ng-template matTabContent>
         <app-request-ride-dashboard (showRideList)="setTab($event)"></app-request-ride-dashboard>
       </ng-template>

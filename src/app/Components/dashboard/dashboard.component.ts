@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   loading: any;
   activeLink = 'link';
   test = 0;
-  userName = "Pallavi"
+  userName: string;
   constructor(
     private dialog: MatDialog,
     private router: Router,
@@ -43,8 +43,9 @@ export class DashboardComponent implements OnInit {
         x.emailId == userEmail
       );
       this.sharedDataService.userDetails = userDetails;
+      this.userName = this.sharedDataService.userDetails[0].name;
       console.log(this.sharedDataService.userDetails);
-      
+
 
     });
   }
