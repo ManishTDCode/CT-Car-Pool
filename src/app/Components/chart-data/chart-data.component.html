@@ -1,0 +1,34 @@
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 100px;">
+    <table class="table table-hover" style="margin-left: 100px; margin-right: 100px; border: 1px solid #ddd;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Country Wise Data</th>
+            <th scope="col">Product Wise Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>
+              <select style="width: 40%;" [(ngModel)]="selectedCountry" (change)="updateChart()">
+                <option value="">Select Country</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+              </select>
+            </td>
+            <td>
+              <select style="width: 40%;" [(ngModel)]="selectedProduct" (change)="updateChart()">
+                <option value="">Select Product</option>
+                <option value="IPhone">IPhone</option>
+                <option value="Samsung">Samsung</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    <div class="chart-container" style="height: 300px; margin-left: 250px;">
+        <canvas  id="MyChartCountry" >{{ chartCountry }}</canvas>
+    </div>

@@ -1,89 +1,34 @@
-
-<div *ngIf="isData" class="mat-elevation-z8 tableContainer" >
-    <table class="tableDesign" mat-table [dataSource]="dataSource" >
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="Name">
-            <th class="tableFont" mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element">
-                {{element.name}}
-            </td>
-        </ng-container>
-
-        <!-- Mobile No. Column -->
-        <ng-container matColumnDef="Mobile No">
-            <th class="tableFont" mat-header-cell *matHeaderCellDef> Mobile No. </th>
-            <td mat-cell *matCellDef="let element">
-                {{element.mobileNo}}
-            </td>
-        </ng-container>
-
-        <!-- Vehicle No. Column -->
-        <ng-container matColumnDef="Vehicle No">
-            <th class="tableFont" mat-header-cell *matHeaderCellDef> Vehicle No. </th>
-            <td mat-cell *matCellDef="let element">
-                {{element.vehiclenumber}}
-            </td>
-        </ng-container>
-
-        <!-- Ride Type Column -->
-        <ng-container matColumnDef="Ride Type">
-            <th class="tableFont" mat-header-cell *matHeaderCellDef> Ride Type </th>
-            <td mat-cell *matCellDef="let element">
-                {{element.ridetype}}
-            </td>
-        </ng-container>
-
-        <!-- Number of Seats Available  Column -->
-        <ng-container matColumnDef="Number of Seats Available">
-            <th class="tableFont" mat-header-cell *matHeaderCellDef> Number of Seats Available </th>
-            <td mat-cell *matCellDef="let element">
-                {{element.seats}}
-            </td>
-        </ng-container>
-
-        <!-- checkOut Column -->
-        <ng-container matColumnDef="View">
-            <th class="tableFont" mat-header-cell *matHeaderCellDef>Ride Details</th>
-            <td mat-cell *matCellDef="let element2" style="text-align: center;cursor: pointer;">
-                <button class="btn mt-3" style="margin: 10px;" (click)="viewRideDetails(element2,'100ms', '100ms')">
-                    View
-                </button>
-                <!-- <mat-icon style="color: rgb(4, 255, 0);">checkout</mat-icon> -->
-            </td>
-        </ng-container>
-
-        <!-- Delete Column -->
-       
-        <ng-container matColumnDef="Delete">
-            <th mat-header-cell *matHeaderCellDef> Delete </th>
-            <td mat-cell *matCellDef="let element" style="text-align: center; cursor: pointer;"
-                (click)="onDelete(element)">
-                <mat-icon
-                    [ngClass]="element.emailId ===  userEmail? 'delete_iconEnable' : ''">delete_outline</mat-icon>
-            </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
-    <mat-paginator class="paginationDiv" [pageSizeOptions]="[7]" showFirstLastButtons
-        aria-label="Select page of cart Product ">
-    </mat-paginator>
-
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 100px;">
+<table class="table table-hover" style="margin-left: 100px; margin-right: 100px; border: 1px solid #ddd;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Country Wise Data</th>
+        <th scope="col">Product Wise Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>
+          <select style="width: 40%;" [(ngModel)]="selectedCountry" (change)="updateChart()">
+            <option value="">Select Country</option>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+          </select>
+        </td>
+        <td>
+          <select style="width: 40%;" [(ngModel)]="selectedProduct" (change)="updateChart()">
+            <option value="">Select Product</option>
+            <option value="IPhone">IPhone</option>
+            <option value="Samsung">Samsung</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
 </div>
-
-<div *ngIf="!isData && !loading" class="data_not_found_container">
-    <img src="../../../assets/noDataFound.png">
-</div>
-<!-- loader template -->
-<div class="my-container">
-<ng-template #customLoadingTemplate>
-    <div class="custom-class">
-    </div>
-</ng-template>
-
-<ngx-loading [show]="loading"
-    [config]="{ backdropBorderRadius: '3px', primaryColour: '#5a91a5', secondaryColour: '#5a91a5', tertiaryColour: '#5a91a5' }"
-    [template]="customLoadingTemplate"></ngx-loading>
+<div class="chart-container" style="height: 300px; margin-left: 250px;">
+    <canvas  id="MyChartCountry" >{{ chartCountry }}</canvas>
 </div>

@@ -21,6 +21,7 @@
     "@angular/router": "^15.0.0",
     "alertifyjs": "^1.13.1",
     "aws-amplify": "^5.0.25",
+    "chart.js": "^4.4.0",
     "ngx-loading": "^15.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

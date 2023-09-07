@@ -19,6 +19,7 @@ import { RideListComponent } from './Components/ride-list/ride-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RideFilterPipe } from './ride-filter.pipe';
 import { CancelRideComponent } from './Components/cancel-ride/cancel-ride.component';
+import { ChartDataComponent } from './Components/chart-data/chart-data.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { CancelRideComponent } from './Components/cancel-ride/cancel-ride.compon
     MyRidesComponent,
     RideListComponent,
     RideFilterPipe,
-    CancelRideComponent
+    CancelRideComponent,
+    ChartDataComponent
   ],
   imports: [
     BrowserModule,

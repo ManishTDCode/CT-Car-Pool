@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 
 @Component({
-  selector: 'app-my-rides',
-  templateUrl: './my-rides.component.html',
-  styleUrls: ['./my-rides.component.scss']
+  selector: 'app-chart-data',
+  templateUrl: './chart-data.component.html',
+  styleUrls: ['./chart-data.component.css']
 })
-export class MyRidesComponent implements OnInit {
+export class ChartDataComponent implements OnInit {
   selectedCountry: string = '';
   selectedProduct: string = '';
   chartCountry: any;
@@ -63,4 +63,5 @@ export class MyRidesComponent implements OnInit {
     this.chartCountry.data.datasets[0].backgroundColor = backgroundColors;
     this.chartCountry.update();
   }
+
 }
